@@ -81,7 +81,7 @@ function AppNavigator() {
           <Stack.Screen name="Terms" component={TermsScreen} options={{ title: 'Terms & Conditions' }} />
           <Stack.Screen name="Privacy" component={PrivacyPolicyScreen} options={{ title: 'Privacy Policy' }} />
         </>
-      )}}
+      )}
     </Stack.Navigator>
   );
 }

@@ -340,7 +340,6 @@
 /* ---- Scrollable area ---- */
 .scroll-area {
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* ---- Divider ---- */
@@ -396,6 +395,7 @@
   align-items: center;
   gap: 16px;
   background: rgba(255,255,255,0.15);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255,255,255,0.3);
   border-radius: 20px;
