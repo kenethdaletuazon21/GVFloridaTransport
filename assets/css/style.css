@@ -1210,25 +1210,47 @@ img { max-width: 100%; height: auto; display: block; }
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -300px;
-        width: 280px;
+        right: -320px;
+        width: 300px;
         height: 100vh;
         background: var(--white);
         flex-direction: column;
-        padding: 80px 30px 30px;
+        padding: 80px 24px 30px;
         transition: var(--transition);
         z-index: 999;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+        box-shadow: -5px 0 30px rgba(0,0,0,0.18);
+        overflow-y: auto;
     }
 
     .nav-menu.active {
         right: 0;
     }
 
+    .nav-menu li:last-child .nav-link {
+        border-bottom: none;
+    }
+
     .nav-link {
-        padding: 12px 0;
+        padding: 14px 0;
         width: 100%;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+        color: var(--dark);
+    }
+
+    /* Disable the slide-underline decoration inside the sidebar */
+    .nav-link::after {
+        display: none;
+    }
+
+    /* Keep hover/active state as background highlight only */
+    .nav-link:hover, .nav-link.active {
+        background: rgba(217,0,69,0.07);
+        color: var(--primary);
+        padding-left: 10px;
+        border-radius: 6px;
+        border-bottom-color: transparent;
     }
 
     .hero-subtitle { font-size: 2rem; }
@@ -3805,9 +3827,34 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-tabs-grid { grid-template-columns: 1fr; }
     .kiosk-hardware-grid { grid-template-columns: 1fr; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
-    .kiosk-body { width: 280px; }
-    .kiosk-step-screen { max-width: 300px; }
+    .kiosk-body { width: 100%; max-width: 340px; }
+    .kiosk-step-screen { max-width: 100%; width: 100%; }
     .kiosk-admin-note { flex-direction: column; text-align: center; align-items: center; }
     .ks-amount-grid { grid-template-columns: repeat(2, 1fr); }
     .kiosk-highlights { flex-direction: column; align-items: center; }
+
+    /* Stack kiosk step screen columns vertically on mobile */
+    .ks-body-flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .ks-col, .ks-col-center {
+        width: 100%;
+        flex: unset;
+    }
+    .ks-body-center {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+    .ks-ticket-actions {
+        width: 100%;
+        flex: unset;
+    }
+    .ks-seat-grid {
+        max-width: 100%;
+    }
+    .ks-summary {
+        margin-top: 0;
+    }
 }
