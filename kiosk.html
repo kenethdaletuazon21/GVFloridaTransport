@@ -123,13 +123,13 @@
                 <div class="kiosk-step">
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-arrow-left"></i> Select Route</div>
-                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="flex:1;">
+                        <div class="ks-body ks-body-flex">
+                            <div class="ks-col">
                                 <div class="ks-input"><i class="fas fa-map-marker-alt"></i> Manila (Sampaloc Terminal)</div>
                                 <div class="ks-swap"><i class="fas fa-exchange-alt"></i></div>
                                 <div class="ks-input"><i class="fas fa-flag-checkered"></i> Baguio City</div>
                             </div>
-                            <div style="flex:1;">
+                            <div class="ks-col">
                                 <div class="ks-input"><i class="fas fa-calendar"></i> March 24, 2026</div>
                                 <div class="ks-input"><i class="fas fa-clock"></i> 10:00 PM</div>
                                 <div class="ks-btn">Search Trips</div>
@@ -151,8 +151,8 @@
                     </div>
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-arrow-left"></i> Available Trips</div>
-                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="flex:1;">
+                        <div class="ks-body ks-body-flex">
+                            <div class="ks-col">
                                 <p class="ks-label">Manila → Baguio &bull; Mar 24, 2026</p>
                                 <div class="ks-trip-card active">
                                     <div class="ks-trip-header"><span class="ks-badge deluxe">DELUXE</span><span>GVF-2045</span></div>
@@ -165,7 +165,7 @@
                                     <div class="ks-trip-footer"><span>8 seats left</span><strong class="ks-fare">₱950</strong></div>
                                 </div>
                             </div>
-                            <div style="flex:1;">
+                            <div class="ks-col">
                                 <div class="ks-trip-card">
                                     <div class="ks-trip-header"><span class="ks-badge regular">REGULAR</span><span>GVF-1087</span></div>
                                     <div class="ks-trip-times"><strong>8:00 PM</strong><span class="ks-arrow">→</span><strong>3:00 AM</strong></div>
@@ -180,8 +180,8 @@
                 <div class="kiosk-step">
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-arrow-left"></i> Seat Selection</div>
-                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="flex:1;">
+                        <div class="ks-body ks-body-flex">
+                            <div class="ks-col">
                                 <div class="ks-bus-label"><i class="fas fa-bus"></i> GVF-2045 &bull; Deluxe</div>
                                 <div class="ks-seat-grid">
                                     <div class="ks-seat available"></div>
@@ -211,10 +211,10 @@
                                     <span><span class="ks-dot taken"></span> Taken</span>
                                 </div>
                             </div>
-                            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+                            <div class="ks-col-center">
                                 <div class="ks-summary">
                                     <div><span>Bus</span><strong>GVF-2045 Deluxe</strong></div>
-                                    <div><span>Selected Seats</span><strong style="color:var(--primary);">#10, #12</strong></div>
+                                    <div><span>Selected Seats</span><strong class="ks-highlight">#10, #12</strong></div>
                                     <div><span>Fare / seat</span><strong>₱770.00</strong></div>
                                     <div class="ks-total"><span>Total (2 seats)</span><strong>₱1,540.00</strong></div>
                                 </div>
@@ -237,8 +237,8 @@
                     </div>
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-arrow-left"></i> Baggage Declaration</div>
-                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="flex:1;">
+                        <div class="ks-body ks-body-flex">
+                            <div class="ks-col">
                                 <p class="ks-label">Your Baggage</p>
                                 <div class="ks-baggage-card">
                                     <div class="ks-baggage-icon"><i class="fas fa-suitcase-rolling"></i></div>
@@ -256,13 +256,13 @@
                                     </div>
                                     <div class="ks-baggage-qty">×1</div>
                                 </div>
-                                <div class="ks-btn" style="background:transparent;border:2px dashed var(--gray-300);color:var(--text-light);"><i class="fas fa-plus"></i> Add More</div>
+                                <div class="ks-btn ks-btn-dashed"><i class="fas fa-plus"></i> Add More</div>
                             </div>
-                            <div style="flex:1;">
+                            <div class="ks-col">
                                 <div class="ks-summary">
                                     <div><span>Free Allowance</span><strong>15 kg</strong></div>
                                     <div><span>Total Weight</span><strong>30 kg</strong></div>
-                                    <div><span>Excess (15 kg)</span><strong style="color:var(--primary);">₱150.00</strong></div>
+                                    <div><span>Excess (15 kg)</span><strong class="ks-highlight">₱150.00</strong></div>
                                     <div class="ks-total"><span>Baggage Fee</span><strong>₱150.00</strong></div>
                                 </div>
                                 <div class="ks-btn">Confirm Baggage</div>
@@ -274,15 +274,15 @@
                 <div class="kiosk-step">
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-arrow-left"></i> Payment</div>
-                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="flex:1;">
+                        <div class="ks-body ks-body-flex">
+                            <div class="ks-col">
                                 <p class="ks-label">Select Payment Method</p>
                                 <div class="ks-pay-option active"><i class="fas fa-qrcode"></i> GCash</div>
                                 <div class="ks-pay-option"><i class="fas fa-mobile-alt"></i> PayMaya</div>
                                 <div class="ks-pay-option"><i class="fas fa-credit-card"></i> Visa / Mastercard</div>
                                 <div class="ks-pay-option"><i class="fas fa-wallet"></i> GV Wallet</div>
                             </div>
-                            <div style="flex:1;">
+                            <div class="ks-col">
                                 <div class="ks-summary">
                                     <div><span>Route</span><strong>Manila → Baguio</strong></div>
                                     <div><span>Date</span><strong>Mar 24, 10:00 PM</strong></div>
@@ -309,14 +309,14 @@
                     </div>
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-check-circle"></i> Booking Confirmed!</div>
-                        <div class="ks-body ks-body-center" style="display:flex;gap:20px;align-items:center;">
-                            <div style="text-align:center;">
+                        <div class="ks-body ks-body-center">
+                            <div class="ks-center">
                                 <div class="ks-success-icon"><i class="fas fa-check"></i></div>
                                 <h4>Booking #GVF-20260324-0892</h4>
                                 <p class="ks-sub">Manila → Baguio &bull; Mar 24, 10:00 PM</p>
                                 <p class="ks-sub">Seats 12A, 12B &bull; 2 Passengers</p>
                             </div>
-                            <div class="ks-ticket-actions" style="flex:1;">
+                            <div class="ks-ticket-actions">
                                 <div class="ks-action-btn"><i class="fas fa-print"></i> Print Ticket</div>
                                 <div class="ks-action-btn outline"><i class="fas fa-sms"></i> Send via SMS</div>
                                 <div class="ks-action-btn outline"><i class="fas fa-envelope"></i> Send via Email</div>
@@ -328,15 +328,15 @@
                 <div class="kiosk-step">
                     <div class="kiosk-step-screen">
                         <div class="ks-header"><i class="fas fa-arrow-left"></i> Wallet Top Up</div>
-                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="flex:1;">
+                        <div class="ks-body ks-body-flex">
+                            <div class="ks-col">
                                 <div class="ks-wallet-card">
                                     <div class="ks-wallet-label">GV Wallet Balance</div>
                                     <div class="ks-wallet-amount">₱2,350.00</div>
                                     <div class="ks-wallet-user"><i class="fas fa-user"></i> Juan Dela Cruz</div>
                                 </div>
                             </div>
-                            <div style="flex:1;">
+                            <div class="ks-col">
                                 <p class="ks-label">Top Up Amount</p>
                                 <div class="ks-amount-grid">
                                     <div class="ks-amount-chip">₱100</div>
