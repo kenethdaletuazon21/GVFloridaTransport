@@ -3944,7 +3944,7 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-hardware-grid { grid-template-columns: 1fr; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
     .kiosk-hero-mockup { justify-content: center; width: 100%; overflow-x: auto; }
-    .kiosk-enclosure { width: 100%; max-width: 420px; }
+    .kiosk-enclosure { width: 100%; max-width: 420px; margin: 0 auto; }
     .kiosk-home-grid { grid-template-columns: 1fr 1fr; }
     .kiosk-home-btn { padding: 10px 6px; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
