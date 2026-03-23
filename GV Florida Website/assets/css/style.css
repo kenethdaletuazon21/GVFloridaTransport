@@ -1284,7 +1284,7 @@ img { max-width: 100%; height: auto; display: block; }
     /* === SCHEDULE === */
     .schedule-table { font-size: 0.82rem; }
     .schedule-table th, .schedule-table td { padding: 8px 10px; }
-    .schedule-table-wrap { -webkit-overflow-scrolling: auto; }
+    .schedule-table-wrap { overflow-x: auto; }
 
     /* === GALLERY === */
     .gallery-grid { grid-template-columns: 1fr 1fr; }
@@ -3854,6 +3854,8 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-tabs-grid { grid-template-columns: 1fr; }
     .kiosk-hardware-grid { grid-template-columns: 1fr; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
+    .kiosk-hero-mockup { justify-content: center; width: 100%; }
+    .kiosk-frame { align-items: center; margin: 0 auto; }
     .kiosk-body { width: 100%; max-width: 340px; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
     .kiosk-admin-note { flex-direction: column; text-align: center; align-items: center; }
