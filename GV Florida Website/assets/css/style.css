@@ -2068,32 +2068,50 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 1.2rem;
 }
 
-/* Kiosk Frame Mockup */
+/* Kiosk Tablet Mockup */
 .kiosk-hero-mockup {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
-.kiosk-frame {
-    position: relative;
+.tablet-mockup {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: #1a1a2e;
+    border-radius: 24px;
+    padding: 16px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.08);
+    gap: 0;
+    max-width: 640px;
+    width: 100%;
+}
+.tablet-bezel-left,
+.tablet-bezel-right {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 40px;
+    flex-shrink: 0;
 }
-.kiosk-stand {
-    width: 80px;
-    height: 60px;
-    background: linear-gradient(180deg, #555 0%, #333 100%);
-    clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%);
-    order: 2;
-    margin-top: -2px;
+.tablet-camera {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
 }
-.kiosk-body {
-    width: 520px;
-    background: #1a1a2e;
-    border-radius: 20px;
-    padding: 14px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.3), inset 0 0 0 2px rgba(255,255,255,0.08);
-    order: 1;
+.tablet-home-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
+}
+.tablet-screen-wrap {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
 }
 .kiosk-screen {
     background: var(--white);
@@ -3855,10 +3873,9 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-hardware-grid { grid-template-columns: 1fr; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
     .kiosk-hero-mockup { justify-content: center; width: 100%; }
-    .kiosk-frame { align-items: center; margin: 0 auto; }
-    .kiosk-body { width: 100%; max-width: none; }
-    .kiosk-welcome { display: flex; flex-direction: row; align-items: center; gap: 12px; text-align: left; padding: 12px 16px; }
-    .kiosk-logo { width: 42px; margin: 0; flex-shrink: 0; }
+    .tablet-mockup { max-width: 100%; border-radius: 18px; padding: 10px; }
+    .tablet-bezel-left, .tablet-bezel-right { width: 28px; }
+    .tablet-home-btn { width: 20px; height: 20px; }
     .kiosk-home-grid { grid-template-columns: 1fr 1fr; }
     .kiosk-home-btn { padding: 12px 8px; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
