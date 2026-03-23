@@ -3857,6 +3857,7 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-hero-mockup { justify-content: center; width: 100%; }
     .kiosk-frame { align-items: center; margin: 0 auto; }
     .kiosk-body { width: 100%; max-width: 340px; }
+    .kiosk-home-grid { grid-template-columns: 1fr 1fr; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
     .kiosk-admin-note { flex-direction: column; text-align: center; align-items: center; }
     .ks-amount-grid { grid-template-columns: repeat(2, 1fr); }
