@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logoround.png">
+    <title>GV Florida Transport, Inc. - Book Now</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="GV Florida Transport" class="logo-img">
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span class="hamburger"></span></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+                <li><a href="booking.html" class="nav-link active">Book Now</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="app.html" class="nav-link">Get the App</a></li>
+                <li><a href="kiosk.html" class="nav-link">Kiosk</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Book Your Trip</h1>
+            <p>Search, select, and book your bus trip online — fast, easy, and secure</p>
+        </div>
+    </section>
+
+    <!-- Booking Wizard -->
+    <section class="booking-section">
+        <div class="container">
+            <!-- Progress Steps -->
+            <div class="booking-progress">
+                <div class="bp-step active" data-step="1">
+                    <div class="bp-circle"><i class="fas fa-search"></i></div>
+                    <span>Search</span>
+                </div>
+                <div class="bp-line"></div>
+                <div class="bp-step" data-step="2">
+                    <div class="bp-circle"><i class="fas fa-bus"></i></div>
+                    <span>Select Trip</span>
+                </div>
+                <div class="bp-line"></div>
+                <div class="bp-step" data-step="3">
+                    <div class="bp-circle"><i class="fas fa-chair"></i></div>
+                    <span>Pick Seat</span>
+                </div>
+                <div class="bp-line"></div>
+                <div class="bp-step" data-step="4">
+                    <div class="bp-circle"><i class="fas fa-suitcase-rolling"></i></div>
+                    <span>Baggage</span>
+                </div>
+                <div class="bp-line"></div>
+                <div class="bp-step" data-step="5">
+                    <div class="bp-circle"><i class="fas fa-credit-card"></i></div>
+                    <span>Payment</span>
+                </div>
+                <div class="bp-line"></div>
+                <div class="bp-step" data-step="6">
+                    <div class="bp-circle"><i class="fas fa-check"></i></div>
+                    <span>Confirm</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Search -->
+            <div class="booking-step active" id="bookStep1">
+                <div class="booking-card">
+                    <h2><i class="fas fa-search"></i> Search Available Trips</h2>
+                    <div class="booking-form-grid">
+                        <div class="bk-field">
+                            <label><i class="fas fa-map-marker-alt"></i> Origin</label>
+                            <select id="bkOrigin" class="bk-input" title="Select origin terminal" aria-label="Origin terminal">
+                                <option value="Manila (Sampaloc)">GV Florida Terminal Sampaloc, Manila</option>
+                                <option value="Quezon City (EDSA)">GV Florida Terminal Quezon City (EDSA)</option>
+                                <option value="Laoag">GV Florida Terminal Ilocos Norte (Laoag)</option>
+                                <option value="Isabela">GV Florida Terminal Isabela (Santiago)</option>
+                            </select>
+                        </div>
+                        <div class="bk-field">
+                            <label><i class="fas fa-map-pin"></i> Destination</label>
+                            <select id="bkDest" class="bk-input" title="Select destination" aria-label="Destination">
+                                <option value="">Select destination</option>
+                                <option value="Tuguegarao">Tuguegarao</option>
+                                <option value="Santiago">Santiago</option>
+                                <option value="Ilagan">Ilagan</option>
+                                <option value="Cauayan">Cauayan</option>
+                                <option value="Tabuk">Tabuk</option>
+                                <option value="Baguio">Baguio City</option>
+                                <option value="Solano">Solano</option>
+                                <option value="Bayombong">Bayombong</option>
+                                <option value="Banaue">Banaue</option>
+                                <option value="Bontoc">Bontoc</option>
+                                <option value="Aparri">Aparri</option>
+                                <option value="Laoag">Laoag</option>
+                            </select>
+                        </div>
+                        <div class="bk-field">
+                            <label><i class="fas fa-calendar"></i> Travel Date</label>
+                            <input type="date" id="bkDate" class="bk-input" title="Travel date" aria-label="Travel date">
+                        </div>
+                        <div class="bk-field">
+                            <label><i class="fas fa-filter"></i> Bus Type</label>
+                            <select id="bkType" class="bk-input" title="Select bus type" aria-label="Bus type">
+                                <option value="">All Types</option>
+                                <option value="regular">Regular</option>
+                                <option value="deluxe">Deluxe</option>
+                                <option value="super_deluxe">Super Deluxe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="bk-btn-primary" onclick="searchTrips()"><i class="fas fa-search"></i> Search Trips</button>
+                </div>
+
+                <!-- Popular Routes Quick Pick -->
+                <div class="booking-popular">
+                    <h3>Popular Routes</h3>
+                    <div class="bp-routes">
+                        <div class="bp-route" onclick="quickRoute('Tuguegarao')">
+                            <span class="bp-route-icon">🏔️</span>
+                            <div>
+                                <strong>Manila → Tuguegarao</strong>
+                                <small>~10 hrs &bull; from ₱950</small>
+                            </div>
+                        </div>
+                        <div class="bp-route" onclick="quickRoute('Santiago')">
+                            <span class="bp-route-icon">🌾</span>
+                            <div>
+                                <strong>Manila → Santiago</strong>
+                                <small>~8 hrs &bull; from ₱850</small>
+                            </div>
+                        </div>
+                        <div class="bp-route" onclick="quickRoute('Baguio')">
+                            <span class="bp-route-icon">🌲</span>
+                            <div>
+                                <strong>Manila → Baguio</strong>
+                                <small>~6 hrs &bull; from ₱750</small>
+                            </div>
+                        </div>
+                        <div class="bp-route" onclick="quickRoute('Tabuk')">
+                            <span class="bp-route-icon">⛰️</span>
+                            <div>
+                                <strong>Manila → Tabuk</strong>
+                                <small>~12 hrs &bull; from ₱1,050</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Trip Results -->
+            <div class="booking-step" id="bookStep2">
+                <div class="booking-card">
+                    <h2><i class="fas fa-bus"></i> Available Trips</h2>
+                    <p class="bk-route-label" id="routeLabel"></p>
+                    <div id="tripResults" class="bk-trip-list"></div>
+                    <button class="bk-btn-secondary" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Back to Search</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Seat Selection -->
+            <div class="booking-step" id="bookStep3">
+                <div class="booking-card">
+                    <h2><i class="fas fa-chair"></i> Select Your Seat</h2>
+                    <div class="bk-seat-layout">
+                        <div class="bk-bus-visual">
+                            <div class="bk-driver"><i class="fas fa-steering-wheel"></i> Driver</div>
+                            <div class="bk-entrance">ENTRANCE</div>
+                            <div class="bk-seat-grid" id="seatGrid"></div>
+                            <div class="bk-seat-legend">
+                                <span><span class="bk-legend-dot available"></span> Available</span>
+                                <span><span class="bk-legend-dot selected"></span> Selected</span>
+                                <span><span class="bk-legend-dot taken"></span> Occupied</span>
+                            </div>
+                        </div>
+                        <div class="bk-seat-summary">
+                            <h3>Booking Summary</h3>
+                            <div id="seatSummary">
+                                <p class="bk-no-seat">No seat selected</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bk-btn-row">
+                        <button class="bk-btn-secondary" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="bk-btn-primary" id="seatContinueBtn" onclick="goToStep(4)" disabled><i class="fas fa-arrow-right"></i> Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Baggage Declaration -->
+            <div class="booking-step" id="bookStep4">
+                <div class="booking-card">
+                    <h2><i class="fas fa-suitcase-rolling"></i> Baggage Declaration</h2>
+                    <p class="bk-subtitle">Register your baggage for monitoring. Each passenger is allowed 20kg free baggage.</p>
+                    <div id="baggageForm" class="bk-baggage-form"></div>
+                    <div class="bk-baggage-policy">
+                        <h4><i class="fas fa-info-circle"></i> Baggage Policy</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> 20 kg free baggage allowance per passenger</li>
+                            <li><i class="fas fa-check"></i> Excess baggage fee: ₱50 per additional 5 kg</li>
+                            <li><i class="fas fa-check"></i> Declare valuable items for insurance coverage</li>
+                            <li><i class="fas fa-check"></i> Fragile items must be declared at check-in</li>
+                            <li><i class="fas fa-check"></i> Maximum single item weight: 30 kg</li>
+                            <li><i class="fas fa-check"></i> Prohibited: flammable, hazardous, illegal items</li>
+                        </ul>
+                    </div>
+                    <div class="bk-btn-row">
+                        <button class="bk-btn-secondary" onclick="goToStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="bk-btn-primary" onclick="goToStep(5)"><i class="fas fa-arrow-right"></i> Continue to Payment</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Payment -->
+            <div class="booking-step" id="bookStep5">
+                <div class="booking-card">
+                    <h2><i class="fas fa-credit-card"></i> Payment</h2>
+                    <div class="bk-payment-grid">
+                        <div class="bk-payment-methods">
+                            <h3>Select Payment Method</h3>
+                            <div class="bk-pay-option" data-method="wallet" onclick="selectPayment('wallet')">
+                                <div class="bk-pay-icon"><i class="fas fa-wallet"></i></div>
+                                <div><strong>GV Wallet</strong><small>Pay from your wallet balance</small></div>
+                                <div class="bk-pay-radio"></div>
+                            </div>
+                            <div class="bk-pay-option" data-method="gcash" onclick="selectPayment('gcash')">
+                                <div class="bk-pay-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <div><strong>GCash</strong><small>Pay via GCash e-wallet</small></div>
+                                <div class="bk-pay-radio"></div>
+                            </div>
+                            <div class="bk-pay-option" data-method="maya" onclick="selectPayment('maya')">
+                                <div class="bk-pay-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <div><strong>Maya / PayMaya</strong><small>Pay via Maya e-wallet</small></div>
+                                <div class="bk-pay-radio"></div>
+                            </div>
+                            <div class="bk-pay-option" data-method="card" onclick="selectPayment('card')">
+                                <div class="bk-pay-icon"><i class="fas fa-credit-card"></i></div>
+                                <div><strong>Credit / Debit Card</strong><small>Visa, Mastercard</small></div>
+                                <div class="bk-pay-radio"></div>
+                            </div>
+                            <div class="bk-pay-option" data-method="counter" onclick="selectPayment('counter')">
+                                <div class="bk-pay-icon"><i class="fas fa-store"></i></div>
+                                <div><strong>Pay at Counter</strong><small>Reserve now, pay at the terminal</small></div>
+                                <div class="bk-pay-radio"></div>
+                            </div>
+                        </div>
+                        <div class="bk-order-summary">
+                            <h3>Order Summary</h3>
+                            <div id="orderSummary"></div>
+                        </div>
+                    </div>
+                    <div class="bk-btn-row">
+                        <button class="bk-btn-secondary" onclick="goToStep(4)"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="bk-btn-primary" id="payBtn" onclick="processPayment()" disabled><i class="fas fa-lock"></i> <span id="payBtnText">Select payment method</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Confirmation -->
+            <div class="booking-step" id="bookStep6">
+                <div class="booking-card bk-confirm-card">
+                    <div class="bk-success-icon"><i class="fas fa-check-circle"></i></div>
+                    <h2>Booking Confirmed!</h2>
+                    <p class="bk-success-sub">Your ticket has been booked successfully</p>
+                    <div class="bk-confirm-details">
+                        <div class="bk-qr-area">
+                            <div class="bk-qr-placeholder"><i class="fas fa-qrcode"></i></div>
+                            <p class="bk-booking-code" id="bookingCode">GVF-XXXXXXXX</p>
+                            <small>Show this QR code to the conductor</small>
+                        </div>
+                        <div class="bk-confirm-info" id="confirmInfo"></div>
+                    </div>
+                    <div class="bk-confirm-actions">
+                        <button class="bk-btn-secondary" onclick="window.print()"><i class="fas fa-print"></i> Print Ticket</button>
+                        <button class="bk-btn-primary" onclick="goToStep(1)"><i class="fas fa-plus"></i> Book Another Trip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GV Florida Transport, Inc.</h3>
+                    <p>Your trusted bus transport company providing safe, comfortable, and reliable travel across Luzon since establishment.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/gvfloridatransportinc/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="app.html">Get the App</a></li>
+                        <li><a href="kiosk.html">Kiosk</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 832 AH Lacson Ave. Cor. Earnshaw St. Sampaloc, Manila</li>
+                        <li><i class="fas fa-phone"></i> 02-493-7956</li>
+                        <li><i class="fas fa-envelope"></i> gvfloridatrans@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Book Online</h3>
+                    <p>Reserve your seat online through our mobile app or kiosk.</p>
+                    <a href="booking.html" class="btn btn-outline btn-sm">Book Now</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GV Florida Transport, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    // Booking state
+    let bookingState = {
+        origin: '', destination: '', date: '', busType: '',
+        trip: null, seat: null, baggage: [], payment: null, total: 0
+    };
+    let currentStep = 1;
+
+    // Demo trip data
+    const DEMO_TRIPS = [
+        { id: 't1', departure: '2:00 AM', arrival: '12:00 PM', type: 'deluxe', bus: 'GVF-001', seats: 18, fare: 950 },
+        { id: 't2', departure: '6:00 AM', arrival: '4:00 PM', type: 'super_deluxe', bus: 'GVF-005', seats: 12, fare: 1200 },
+        { id: 't3', departure: '8:00 PM', arrival: '6:00 AM', type: 'deluxe', bus: 'GVF-008', seats: 25, fare: 950 },
+        { id: 't4', departure: '10:00 PM', arrival: '8:00 AM', type: 'super_deluxe', bus: 'GVF-012', seats: 8, fare: 1350 },
+        { id: 't5', departure: '12:00 AM', arrival: '10:00 AM', type: 'regular', bus: 'GVF-015', seats: 32, fare: 750 },
+    ];
+    const OCCUPIED_SEATS = new Set([3, 7, 12, 15, 18, 22, 25, 30, 33, 38, 41]);
+
+    // Set default date to tomorrow
+    document.addEventListener('DOMContentLoaded', function() {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('bkDate').value = tomorrow.toISOString().split('T')[0];
+        document.getElementById('bkDate').min = new Date().toISOString().split('T')[0];
+    });
+
+    function quickRoute(dest) {
+        document.getElementById('bkDest').value = dest;
+        searchTrips();
+    }
+
+    function goToStep(step) {
+        document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('bookStep' + step).classList.add('active');
+        document.querySelectorAll('.bp-step').forEach(s => {
+            const sNum = parseInt(s.dataset.step);
+            s.classList.toggle('active', sNum === step);
+            s.classList.toggle('completed', sNum < step);
+        });
+        currentStep = step;
+        window.scrollTo({ top: document.querySelector('.booking-section').offsetTop - 80, behavior: 'smooth' });
+
+        if (step === 4) buildBaggageForm();
+        if (step === 5) buildOrderSummary();
+    }
+
+    function searchTrips() {
+        const dest = document.getElementById('bkDest').value;
+        const date = document.getElementById('bkDate').value;
+        const type = document.getElementById('bkType').value;
+        if (!dest) { alert('Please select a destination'); return; }
+        if (!date) { alert('Please select a travel date'); return; }
+
+        bookingState.origin = document.getElementById('bkOrigin').value;
+        bookingState.destination = dest;
+        bookingState.date = date;
+        bookingState.busType = type;
+
+        const filtered = type ? DEMO_TRIPS.filter(t => t.type === type) : DEMO_TRIPS;
+        document.getElementById('routeLabel').textContent = bookingState.origin + ' → ' + dest + ' — ' + new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+        let html = '';
+        filtered.forEach(t => {
+            const typeLabel = t.type.replace('_', ' ').toUpperCase();
+            const typeClass = t.type === 'super_deluxe' ? 'gold' : t.type === 'deluxe' ? 'blue' : 'gray';
+            html += '<div class="bk-trip-card" onclick="selectTrip(\'' + t.id + '\')">' +
+                '<div class="bk-trip-header"><span class="bk-type-badge ' + typeClass + '">' + typeLabel + '</span><span class="bk-bus-num">' + t.bus + '</span></div>' +
+                '<div class="bk-trip-times"><div class="bk-time-block"><small>Departure</small><strong>' + t.departure + '</strong></div>' +
+                '<div class="bk-time-line"><span class="bk-dot"></span><span class="bk-line"></span><span class="bk-dot"></span></div>' +
+                '<div class="bk-time-block end"><small>Arrival</small><strong>' + t.arrival + '</strong></div></div>' +
+                '<div class="bk-trip-footer"><span class="bk-seats-left">' + t.seats + ' seats left</span><span class="bk-fare">₱' + t.fare.toLocaleString() + '</span></div></div>';
+        });
+        document.getElementById('tripResults').innerHTML = html || '<p class="bk-no-results">No trips found for this route and date.</p>';
+        goToStep(2);
+    }
+
+    function selectTrip(id) {
+        bookingState.trip = DEMO_TRIPS.find(t => t.id === id);
+        buildSeatMap();
+        goToStep(3);
+    }
+
+    function buildSeatMap() {
+        let html = '';
+        for (let i = 1; i <= 45; i++) {
+            const occupied = OCCUPIED_SEATS.has(i);
+            const selected = bookingState.seat === i;
+            const cls = occupied ? 'bk-seat taken' : selected ? 'bk-seat selected' : 'bk-seat available';
+            html += '<div class="' + cls + '"' + (!occupied ? ' onclick="pickSeat(' + i + ')"' : '') + '>' + i + '</div>';
+            if (i % 5 === 0) continue; // no extra spacing needed, grid handles it
+        }
+        document.getElementById('seatGrid').innerHTML = html;
+        updateSeatSummary();
+    }
+
+    function pickSeat(num) {
+        bookingState.seat = (bookingState.seat === num) ? null : num;
+        buildSeatMap();
+    }
+
+    function updateSeatSummary() {
+        const t = bookingState.trip;
+        if (!bookingState.seat || !t) {
+            document.getElementById('seatSummary').innerHTML = '<p class="bk-no-seat">No seat selected</p>';
+            document.getElementById('seatContinueBtn').disabled = true;
+            return;
+        }
+        const serviceFee = Math.round(t.fare * 0.02);
+        bookingState.total = t.fare + serviceFee;
+        document.getElementById('seatSummary').innerHTML =
+            '<div class="bk-summary-row"><span>Route</span><strong>' + bookingState.origin + ' → ' + bookingState.destination + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Bus</span><strong>' + t.type.replace('_',' ').toUpperCase() + ' — ' + t.bus + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Departure</span><strong>' + t.departure + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Seat</span><strong style="color:var(--primary);">#' + bookingState.seat + '</strong></div>' +
+            '<div class="bk-summary-divider"></div>' +
+            '<div class="bk-summary-row"><span>Base Fare</span><strong>₱' + t.fare.toLocaleString() + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Service Fee</span><strong>₱' + serviceFee + '</strong></div>' +
+            '<div class="bk-summary-row total"><span>Total</span><strong>₱' + bookingState.total.toLocaleString() + '</strong></div>';
+        document.getElementById('seatContinueBtn').disabled = false;
+    }
+
+    function buildBaggageForm() {
+        let html = '<div class="bk-baggage-item">' +
+            '<div class="bk-baggage-header"><i class="fas fa-suitcase-rolling"></i> Passenger — Seat #' + (bookingState.seat || '—') + '</div>' +
+            '<div class="bk-baggage-fields">' +
+            '<div class="bk-field-row"><div class="bk-field"><label>Number of Bags</label><select class="bk-input" id="bagCount" onchange="updateBagFields()">' +
+            '<option value="0">0 — No checked baggage</option><option value="1" selected>1 bag</option><option value="2">2 bags</option><option value="3">3 bags</option></select></div>' +
+            '<div class="bk-field"><label>Total Estimated Weight</label><select class="bk-input" id="bagWeight">' +
+            '<option value="10">Up to 10 kg (Light)</option><option value="15">10–15 kg</option><option value="20" selected>15–20 kg (Free allowance)</option>' +
+            '<option value="25">20–25 kg (+₱50)</option><option value="30">25–30 kg (+₱100)</option></select></div></div>' +
+            '<div id="bagDetails"></div>' +
+            '<div class="bk-field"><label><i class="fas fa-gem"></i> Declare Valuable Items (Optional)</label>' +
+            '<textarea class="bk-input bk-textarea" id="bagValuables" placeholder="e.g., Laptop worth ₱45,000; Gold jewelry worth ₱15,000; Camera equipment worth ₱30,000"></textarea>' +
+            '<small class="bk-field-hint">Declaring valuables enables insurance coverage. Maximum declared value: ₱100,000</small></div>' +
+            '<div class="bk-field"><label><i class="fas fa-exclamation-triangle"></i> Special Handling</label>' +
+            '<div class="bk-checkbox-group">' +
+            '<label class="bk-check"><input type="checkbox" id="bagFragile"> <span>Fragile items</span></label>' +
+            '<label class="bk-check"><input type="checkbox" id="bagPerishable"> <span>Perishable goods</span></label>' +
+            '<label class="bk-check"><input type="checkbox" id="bagOversized"> <span>Oversized item</span></label>' +
+            '</div></div></div></div>';
+        document.getElementById('baggageForm').innerHTML = html;
+        updateBagFields();
+    }
+
+    function updateBagFields() {
+        const count = parseInt(document.getElementById('bagCount').value);
+        let html = '';
+        for (let i = 1; i <= count; i++) {
+            html += '<div class="bk-bag-detail"><strong>Bag ' + i + '</strong>' +
+                '<div class="bk-field-row"><div class="bk-field"><label>Description</label>' +
+                '<input class="bk-input" placeholder="e.g., Black rolling suitcase"></div>' +
+                '<div class="bk-field"><label>Type</label><select class="bk-input">' +
+                '<option>Suitcase</option><option>Backpack</option><option>Box/Parcel</option><option>Bag</option><option>Other</option></select></div></div></div>';
+        }
+        document.getElementById('bagDetails').innerHTML = html;
+    }
+
+    function selectPayment(method) {
+        bookingState.payment = method;
+        document.querySelectorAll('.bk-pay-option').forEach(o => o.classList.toggle('active', o.dataset.method === method));
+        document.getElementById('payBtn').disabled = false;
+        const label = method === 'counter' ? 'Reserve Ticket' : 'Pay ₱' + bookingState.total.toLocaleString();
+        document.getElementById('payBtnText').textContent = label;
+    }
+
+    function buildOrderSummary() {
+        const t = bookingState.trip;
+        if (!t) return;
+        const serviceFee = Math.round(t.fare * 0.02);
+        const weight = document.getElementById('bagWeight') ? parseInt(document.getElementById('bagWeight').value) : 20;
+        const excessFee = weight > 20 ? Math.ceil((weight - 20) / 5) * 50 : 0;
+        bookingState.total = t.fare + serviceFee + excessFee;
+
+        document.getElementById('orderSummary').innerHTML =
+            '<div class="bk-summary-row"><span>Route</span><strong>' + bookingState.origin + ' → ' + bookingState.destination + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Date</span><strong>' + new Date(bookingState.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Departure</span><strong>' + t.departure + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Bus</span><strong>' + t.type.replace('_',' ') + ' — ' + t.bus + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Seat</span><strong>#' + bookingState.seat + '</strong></div>' +
+            '<div class="bk-summary-divider"></div>' +
+            '<div class="bk-summary-row"><span>Base Fare</span><strong>₱' + t.fare.toLocaleString() + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Service Fee</span><strong>₱' + serviceFee + '</strong></div>' +
+            (excessFee > 0 ? '<div class="bk-summary-row"><span>Excess Baggage</span><strong>₱' + excessFee + '</strong></div>' : '') +
+            '<div class="bk-summary-row total"><span>Total</span><strong>₱' + bookingState.total.toLocaleString() + '</strong></div>';
+    }
+
+    function processPayment() {
+        if (!bookingState.payment) return;
+        const code = 'GVF-' + Date.now().toString(36).toUpperCase();
+        document.getElementById('bookingCode').textContent = code;
+        const t = bookingState.trip;
+        document.getElementById('confirmInfo').innerHTML =
+            '<div class="bk-summary-row"><span>Route</span><strong>' + bookingState.origin + ' → ' + bookingState.destination + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Date</span><strong>' + new Date(bookingState.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Departure</span><strong>' + t.departure + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Seat</span><strong>#' + bookingState.seat + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Bus</span><strong>' + t.type.replace('_',' ') + ' — ' + t.bus + '</strong></div>' +
+            '<div class="bk-summary-row"><span>Payment</span><strong>' + bookingState.payment.toUpperCase() + '</strong></div>' +
+            '<div class="bk-summary-divider"></div>' +
+            '<div class="bk-summary-row total"><span>Total Paid</span><strong>₱' + bookingState.total.toLocaleString() + '</strong></div>';
+        goToStep(6);
+    }
+    </script>
+</body>
+</html>

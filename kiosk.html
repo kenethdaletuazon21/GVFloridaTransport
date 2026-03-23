@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logoround.png">
+    <title>GV Florida Transport, Inc. - Kiosk System</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="GV Florida Transport" class="logo-img">
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span class="hamburger"></span></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+                <li><a href="booking.html" class="nav-link">Book Now</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="app.html" class="nav-link">Get the App</a></li>
+                <li><a href="kiosk.html" class="nav-link active">Kiosk</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Self-Service Kiosk System</h1>
+            <p>Book tickets, top up wallets, and manage your account at any GV Florida station terminal</p>
+        </div>
+    </section>
+
+    <!-- Kiosk Hero -->
+    <section class="kiosk-hero">
+        <div class="container">
+            <div class="kiosk-hero-grid">
+                <div class="kiosk-hero-content">
+                    <h2>No Smartphone? <span class="text-primary">No Problem.</span></h2>
+                    <p>Our self-service kiosk terminals are placed at every GV Florida bus station. Walk up, touch the screen, and book your trip in minutes — no app or account required. Pay with GCash, PayMaya, QRPH, or debit/credit card.</p>
+                    <div class="kiosk-highlights">
+                        <div class="kiosk-highlight">
+                            <i class="fas fa-hand-pointer"></i>
+                            <span>Touch Screen</span>
+                        </div>
+                        <div class="kiosk-highlight">
+                            <i class="fas fa-print"></i>
+                            <span>Print Tickets</span>
+                        </div>
+                        <div class="kiosk-highlight">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Multiple Payments</span>
+                        </div>
+                        <div class="kiosk-highlight">
+                            <i class="fas fa-language"></i>
+                            <span>Multi-Language</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kiosk-hero-mockup">
+                    <div class="kiosk-frame">
+                        <div class="kiosk-stand"></div>
+                        <div class="kiosk-body">
+                            <div class="kiosk-screen">
+                                <div class="kiosk-status-bar">
+                                    <span>GV Florida Transport</span>
+                                    <span><i class="fas fa-wifi"></i> <i class="fas fa-signal"></i></span>
+                                </div>
+                                <div class="kiosk-welcome">
+                                    <img src="assets/logoround.png" alt="Logo" class="kiosk-logo">
+                                    <h3>Welcome!</h3>
+                                    <p>Touch to begin your journey</p>
+                                </div>
+                                <div class="kiosk-home-grid">
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span>Buy Ticket</span>
+                                    </div>
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-wallet"></i>
+                                        <span>Top Up Wallet</span>
+                                    </div>
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span>My Account</span>
+                                    </div>
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-map-signs"></i>
+                                        <span>Station Info</span>
+                                    </div>
+                                </div>
+                                <div class="kiosk-lang-bar">
+                                    <span class="lang-active">English</span>
+                                    <span>Filipino</span>
+                                    <span>Ilocano</span>
+                                </div>
+                            </div>
+                            <div class="kiosk-printer-slot">
+                                <div class="kiosk-receipt"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How the Kiosk Works -->
+    <section class="kiosk-flow">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Book your ticket in 7 simple steps</p>
+            <div class="kiosk-flow-steps">
+                <!-- Step 1 -->
+                <div class="kiosk-step">
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-arrow-left"></i> Select Route</div>
+                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
+                            <div style="flex:1;">
+                                <div class="ks-input"><i class="fas fa-map-marker-alt"></i> Manila (Sampaloc Terminal)</div>
+                                <div class="ks-swap"><i class="fas fa-exchange-alt"></i></div>
+                                <div class="ks-input"><i class="fas fa-flag-checkered"></i> Baguio City</div>
+                            </div>
+                            <div style="flex:1;">
+                                <div class="ks-input"><i class="fas fa-calendar"></i> March 24, 2026</div>
+                                <div class="ks-input"><i class="fas fa-clock"></i> 10:00 PM</div>
+                                <div class="ks-btn">Search Trips</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">1</div>
+                        <h3>Select Your Route</h3>
+                        <p>Choose your origin, destination, date, and preferred departure time from the touch screen.</p>
+                    </div>
+                </div>
+                <!-- Step 2: Choose Your Trip -->
+                <div class="kiosk-step kiosk-step-reverse">
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">2</div>
+                        <h3>Choose Your Trip</h3>
+                        <p>Browse available trips with departure times, bus type, amenities, and fare. Tap to select the trip that fits your schedule.</p>
+                    </div>
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-arrow-left"></i> Available Trips</div>
+                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
+                            <div style="flex:1;">
+                                <p class="ks-label">Manila → Baguio &bull; Mar 24, 2026</p>
+                                <div class="ks-trip-card active">
+                                    <div class="ks-trip-header"><span class="ks-badge deluxe">DELUXE</span><span>GVF-2045</span></div>
+                                    <div class="ks-trip-times"><strong>10:00 PM</strong><span class="ks-arrow">→</span><strong>4:00 AM</strong></div>
+                                    <div class="ks-trip-footer"><span>18 seats left</span><strong class="ks-fare">₱770</strong></div>
+                                </div>
+                                <div class="ks-trip-card">
+                                    <div class="ks-trip-header"><span class="ks-badge super">SUPER DELUXE</span><span>GVF-3012</span></div>
+                                    <div class="ks-trip-times"><strong>11:00 PM</strong><span class="ks-arrow">→</span><strong>5:00 AM</strong></div>
+                                    <div class="ks-trip-footer"><span>8 seats left</span><strong class="ks-fare">₱950</strong></div>
+                                </div>
+                            </div>
+                            <div style="flex:1;">
+                                <div class="ks-trip-card">
+                                    <div class="ks-trip-header"><span class="ks-badge regular">REGULAR</span><span>GVF-1087</span></div>
+                                    <div class="ks-trip-times"><strong>8:00 PM</strong><span class="ks-arrow">→</span><strong>3:00 AM</strong></div>
+                                    <div class="ks-trip-footer"><span>25 seats left</span><strong class="ks-fare">₱550</strong></div>
+                                </div>
+                                <div class="ks-btn">Select Trip</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="kiosk-step">
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-arrow-left"></i> Seat Selection</div>
+                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
+                            <div style="flex:1;">
+                                <div class="ks-bus-label"><i class="fas fa-bus"></i> GVF-2045 &bull; Deluxe</div>
+                                <div class="ks-seat-grid">
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat-aisle"></div>
+                                    <div class="ks-seat taken"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat taken"></div>
+                                    <div class="ks-seat taken"></div>
+                                    <div class="ks-seat-aisle"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat selected"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat selected"></div>
+                                    <div class="ks-seat-aisle"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat available"></div>
+                                    <div class="ks-seat-aisle"></div>
+                                    <div class="ks-seat taken"></div>
+                                    <div class="ks-seat available"></div>
+                                </div>
+                                <div class="ks-seat-legend">
+                                    <span><span class="ks-dot available"></span> Open</span>
+                                    <span><span class="ks-dot selected"></span> Yours</span>
+                                    <span><span class="ks-dot taken"></span> Taken</span>
+                                </div>
+                            </div>
+                            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+                                <div class="ks-summary">
+                                    <div><span>Bus</span><strong>GVF-2045 Deluxe</strong></div>
+                                    <div><span>Selected Seats</span><strong style="color:var(--primary);">#10, #12</strong></div>
+                                    <div><span>Fare / seat</span><strong>₱770.00</strong></div>
+                                    <div class="ks-total"><span>Total (2 seats)</span><strong>₱1,540.00</strong></div>
+                                </div>
+                                <div class="ks-btn">Confirm Seats (2)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">3</div>
+                        <h3>Pick Your Seat</h3>
+                        <p>Interactive seat map shows available seats in real time. Tap to select your preferred spot — book for a group too!</p>
+                    </div>
+                </div>
+                <!-- Step 4: Declare Your Baggage -->
+                <div class="kiosk-step kiosk-step-reverse">
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">4</div>
+                        <h3>Declare Your Baggage</h3>
+                        <p>Add your luggage details — specify weight, quantity, and any special handling requirements before checkout.</p>
+                    </div>
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-arrow-left"></i> Baggage Declaration</div>
+                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
+                            <div style="flex:1;">
+                                <p class="ks-label">Your Baggage</p>
+                                <div class="ks-baggage-card">
+                                    <div class="ks-baggage-icon"><i class="fas fa-suitcase-rolling"></i></div>
+                                    <div class="ks-baggage-details">
+                                        <strong>Checked Luggage</strong>
+                                        <span>20 kg &bull; Standard</span>
+                                    </div>
+                                    <div class="ks-baggage-qty">×1</div>
+                                </div>
+                                <div class="ks-baggage-card">
+                                    <div class="ks-baggage-icon"><i class="fas fa-box"></i></div>
+                                    <div class="ks-baggage-details">
+                                        <strong>Cargo Box</strong>
+                                        <span>10 kg &bull; Fragile</span>
+                                    </div>
+                                    <div class="ks-baggage-qty">×1</div>
+                                </div>
+                                <div class="ks-btn" style="background:transparent;border:2px dashed var(--gray-300);color:var(--text-light);"><i class="fas fa-plus"></i> Add More</div>
+                            </div>
+                            <div style="flex:1;">
+                                <div class="ks-summary">
+                                    <div><span>Free Allowance</span><strong>15 kg</strong></div>
+                                    <div><span>Total Weight</span><strong>30 kg</strong></div>
+                                    <div><span>Excess (15 kg)</span><strong style="color:var(--primary);">₱150.00</strong></div>
+                                    <div class="ks-total"><span>Baggage Fee</span><strong>₱150.00</strong></div>
+                                </div>
+                                <div class="ks-btn">Confirm Baggage</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="kiosk-step">
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-arrow-left"></i> Payment</div>
+                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
+                            <div style="flex:1;">
+                                <p class="ks-label">Select Payment Method</p>
+                                <div class="ks-pay-option active"><i class="fas fa-qrcode"></i> GCash</div>
+                                <div class="ks-pay-option"><i class="fas fa-mobile-alt"></i> PayMaya</div>
+                                <div class="ks-pay-option"><i class="fas fa-credit-card"></i> Visa / Mastercard</div>
+                                <div class="ks-pay-option"><i class="fas fa-wallet"></i> GV Wallet</div>
+                            </div>
+                            <div style="flex:1;">
+                                <div class="ks-summary">
+                                    <div><span>Route</span><strong>Manila → Baguio</strong></div>
+                                    <div><span>Date</span><strong>Mar 24, 10:00 PM</strong></div>
+                                    <div><span>Seats</span><strong>12A, 12B</strong></div>
+                                    <div><span>Passengers</span><strong>2</strong></div>
+                                    <div class="ks-total"><span>Total</span><strong>₱1,540.00</strong></div>
+                                </div>
+                                <div class="ks-btn">Pay ₱1,540.00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">5</div>
+                        <h3>Pay Securely</h3>
+                        <p>Tap, scan QR, or insert your card. Supports GCash, PayMaya, QRPH, Visa, Mastercard, and GV Wallet.</p>
+                    </div>
+                </div>
+                <!-- Step 6 -->
+                <div class="kiosk-step kiosk-step-reverse">
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">6</div>
+                        <h3>Get Your Ticket</h3>
+                        <p>Print your ticket and receipt from the built-in thermal printer, or receive it via SMS or email.</p>
+                    </div>
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-check-circle"></i> Booking Confirmed!</div>
+                        <div class="ks-body ks-body-center" style="display:flex;gap:20px;align-items:center;">
+                            <div style="text-align:center;">
+                                <div class="ks-success-icon"><i class="fas fa-check"></i></div>
+                                <h4>Booking #GVF-20260324-0892</h4>
+                                <p class="ks-sub">Manila → Baguio &bull; Mar 24, 10:00 PM</p>
+                                <p class="ks-sub">Seats 12A, 12B &bull; 2 Passengers</p>
+                            </div>
+                            <div class="ks-ticket-actions" style="flex:1;">
+                                <div class="ks-action-btn"><i class="fas fa-print"></i> Print Ticket</div>
+                                <div class="ks-action-btn outline"><i class="fas fa-sms"></i> Send via SMS</div>
+                                <div class="ks-action-btn outline"><i class="fas fa-envelope"></i> Send via Email</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 7 -->
+                <div class="kiosk-step">
+                    <div class="kiosk-step-screen">
+                        <div class="ks-header"><i class="fas fa-arrow-left"></i> Wallet Top Up</div>
+                        <div class="ks-body" style="display:flex;gap:16px;align-items:flex-start;">
+                            <div style="flex:1;">
+                                <div class="ks-wallet-card">
+                                    <div class="ks-wallet-label">GV Wallet Balance</div>
+                                    <div class="ks-wallet-amount">₱2,350.00</div>
+                                    <div class="ks-wallet-user"><i class="fas fa-user"></i> Juan Dela Cruz</div>
+                                </div>
+                            </div>
+                            <div style="flex:1;">
+                                <p class="ks-label">Top Up Amount</p>
+                                <div class="ks-amount-grid">
+                                    <div class="ks-amount-chip">₱100</div>
+                                    <div class="ks-amount-chip">₱200</div>
+                                    <div class="ks-amount-chip active">₱500</div>
+                                    <div class="ks-amount-chip">₱1,000</div>
+                                </div>
+                                <div class="ks-pay-option active"><i class="fas fa-credit-card"></i> Tap / Insert Card</div>
+                                <div class="ks-btn">Top Up ₱500.00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kiosk-step-info">
+                        <div class="kiosk-step-num">7</div>
+                        <h3>Top Up Your Wallet</h3>
+                        <p>Already have a GV Florida account? Log in at the kiosk and top up your digital wallet for faster future bookings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kiosk Tabs / Additional Pages -->
+    <section class="kiosk-tabs-section">
+        <div class="container">
+            <h2 class="section-title">More Kiosk Features</h2>
+            <p class="section-subtitle">Beyond ticketing — everything you need at the station</p>
+            <div class="kiosk-tabs-grid">
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-map"></i> Station Info</div>
+                        <div class="ktm-body">
+                            <div class="ktm-map-placeholder">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <span>Terminal Map</span>
+                            </div>
+                            <div class="ktm-info-row"><i class="fas fa-restroom"></i> Restrooms — Gate A, Gate C</div>
+                            <div class="ktm-info-row"><i class="fas fa-couch"></i> Waiting Area — 2nd Floor</div>
+                            <div class="ktm-info-row"><i class="fas fa-utensils"></i> Food Court — Ground Floor</div>
+                            <div class="ktm-info-row"><i class="fas fa-first-aid"></i> First Aid — Info Desk</div>
+                        </div>
+                    </div>
+                    <h3>Station Info</h3>
+                    <p>Terminal maps, restroom locations, waiting areas, and station amenities at a glance.</p>
+                </div>
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-tags"></i> Promotions</div>
+                        <div class="ktm-body">
+                            <div class="ktm-promo-card hot">
+                                <span class="ktm-promo-badge">HOT</span>
+                                <strong>20% OFF Baguio Trips</strong>
+                                <small>Use code: COOL20 &bull; Valid until Apr 15</small>
+                            </div>
+                            <div class="ktm-promo-card">
+                                <span class="ktm-promo-badge loyalty">Loyalty</span>
+                                <strong>Double Points Weekend</strong>
+                                <small>Earn 2× loyalty points every Saturday</small>
+                            </div>
+                            <div class="ktm-promo-card">
+                                <span class="ktm-promo-badge partner">Partner</span>
+                                <strong>Free Coffee at Jollibee</strong>
+                                <small>Show your ticket for a free brewed coffee</small>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Promotions</h3>
+                    <p>View current discounts, loyalty rewards, and partner offers displayed right at the station.</p>
+                </div>
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-users"></i> Group Booking</div>
+                        <div class="ktm-body">
+                            <div class="ktm-group-summary">
+                                <div class="ktm-group-row"><span>Passenger 1</span><strong>Juan D. — Seat 10A</strong></div>
+                                <div class="ktm-group-row"><span>Passenger 2</span><strong>Maria D. — Seat 10B</strong></div>
+                                <div class="ktm-group-row"><span>Passenger 3</span><strong>Pedro D. — Seat 11A</strong></div>
+                                <div class="ktm-group-row add"><i class="fas fa-plus-circle"></i> Add Passenger</div>
+                            </div>
+                            <div class="ktm-group-total">
+                                <span>Group Total (3 pax)</span>
+                                <strong>₱2,310.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Group Booking</h3>
+                    <p>Book for multiple passengers in a single transaction — perfect for family or group travel.</p>
+                </div>
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-suitcase-rolling"></i> Baggage Declaration</div>
+                        <div class="ktm-body">
+                            <div class="ktm-baggage-card">
+                                <div class="ktm-baggage-row">
+                                    <i class="fas fa-weight-hanging"></i>
+                                    <span>Estimated Weight</span>
+                                    <strong>20 kg (Free)</strong>
+                                </div>
+                                <div class="ktm-baggage-row">
+                                    <i class="fas fa-suitcase"></i>
+                                    <span>Bag 1</span>
+                                    <strong>Suitcase — Black</strong>
+                                </div>
+                                <div class="ktm-baggage-row">
+                                    <i class="fas fa-box"></i>
+                                    <span>Bag 2</span>
+                                    <strong>Box/Parcel</strong>
+                                </div>
+                                <div class="ktm-baggage-row">
+                                    <i class="fas fa-gem"></i>
+                                    <span>Valuables</span>
+                                    <strong>Laptop ₱45K</strong>
+                                </div>
+                                <div class="ktm-baggage-policy-mini">
+                                    <i class="fas fa-info-circle"></i> 20 kg free — Excess: ₱50/5 kg — Max: 30 kg
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Baggage Declaration</h3>
+                    <p>Register and declare baggage at the kiosk. Declare valuable items for insurance coverage. 20 kg free per passenger.</p>
+                </div>
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-question-circle"></i> Help</div>
+                        <div class="ktm-body">
+                            <div class="ktm-help-item"><i class="fas fa-play-circle"></i> How to Book a Ticket</div>
+                            <div class="ktm-help-item"><i class="fas fa-play-circle"></i> How to Top Up Wallet</div>
+                            <div class="ktm-help-item"><i class="fas fa-play-circle"></i> How to Use Loyalty Points</div>
+                            <div class="ktm-help-divider"></div>
+                            <div class="ktm-help-contact">
+                                <i class="fas fa-headset"></i>
+                                <div>
+                                    <strong>Need Assistance?</strong>
+                                    <small>Call 02-493-7956 or ask station staff</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Help & Support</h3>
+                    <p>Step-by-step instructions and direct contact for on-site assistance when you need it.</p>
+                </div>
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-tag"></i> Lost Item Tag</div>
+                        <div class="ktm-body ktm-body-center">
+                            <div class="ktm-tag-preview">
+                                <div class="ktm-tag-header">GV FLORIDA — BAGGAGE CLAIM</div>
+                                <div class="ktm-tag-qr"><i class="fas fa-qrcode"></i></div>
+                                <div class="ktm-tag-info">
+                                    <small>Tag #GVF-BGC-29381</small>
+                                    <strong>Juan Dela Cruz</strong>
+                                    <small>Manila → Baguio &bull; Mar 24</small>
+                                    <small>Phone: 0917-***-4567</small>
+                                </div>
+                            </div>
+                            <div class="ktm-tag-btn"><i class="fas fa-print"></i> Print Claim Tag</div>
+                        </div>
+                    </div>
+                    <h3>Baggage Claim Tag</h3>
+                    <p>Print a claim tag for items left at the station. Includes QR code for easy tracking and retrieval.</p>
+                </div>
+                <div class="kiosk-tab-card">
+                    <div class="kiosk-tab-mockup">
+                        <div class="ktm-header"><i class="fas fa-user-circle"></i> My Account</div>
+                        <div class="ktm-body">
+                            <div class="ktm-account-card">
+                                <div class="ktm-avatar"><i class="fas fa-user"></i></div>
+                                <div>
+                                    <strong>Juan Dela Cruz</strong>
+                                    <small class="ktm-tier"><i class="fas fa-star"></i> Gold Member</small>
+                                </div>
+                            </div>
+                            <div class="ktm-stats-row">
+                                <div class="ktm-stat"><strong>2,450</strong><small>Points</small></div>
+                                <div class="ktm-stat"><strong>₱2,350</strong><small>Wallet</small></div>
+                                <div class="ktm-stat"><strong>38</strong><small>Trips</small></div>
+                            </div>
+                            <div class="ktm-qr-scan">
+                                <i class="fas fa-qrcode"></i>
+                                <span>Scan QR from app to load points</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Account Management</h3>
+                    <p>Log in to access your wallet, loyalty points, and trip history. Create a new account in seconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware Section -->
+    <section class="kiosk-hardware">
+        <div class="container">
+            <h2 class="section-title">Hardware & Integration</h2>
+            <p class="section-subtitle">Enterprise-grade components powering every station kiosk</p>
+            <div class="kiosk-hardware-grid">
+                <div class="kiosk-hw-card">
+                    <div class="kiosk-hw-icon"><i class="fas fa-tablet-alt"></i></div>
+                    <h3>Kiosk Tablet</h3>
+                    <p>iPad or Android tablet in locked kiosk mode with attached printer and card reader.</p>
+                    <span class="hw-tag">Self-Service Terminal</span>
+                </div>
+                <div class="kiosk-hw-card">
+                    <div class="kiosk-hw-icon"><i class="fas fa-print"></i></div>
+                    <h3>Thermal Printer</h3>
+                    <p>Built-in receipt and ticket printing. Battery operated with Wi-Fi/Bluetooth connectivity.</p>
+                    <span class="hw-tag">Ticket & Receipt</span>
+                </div>
+                <div class="kiosk-hw-card">
+                    <div class="kiosk-hw-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>POS Card Reader</h3>
+                    <p>Contactless (NFC) and chip card reader. PCI DSS compliant for secure transactions.</p>
+                    <span class="hw-tag">Payment Terminal</span>
+                </div>
+                <div class="kiosk-hw-card">
+                    <div class="kiosk-hw-icon"><i class="fas fa-satellite-dish"></i></div>
+                    <h3>GPS Module</h3>
+                    <p>Real-time bus tracking via dedicated vehicle-mounted unit or staff mobile device.</p>
+                    <span class="hw-tag">Fleet Tracking</span>
+                </div>
+            </div>
+            <div class="kiosk-admin-note">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <strong>Centrally Managed</strong>
+                    <p>All hardware is monitored from the Admin Web App — printer paper levels, POS reader battery, device health, and connectivity status are tracked in real time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="kiosk-cta">
+        <div class="container">
+            <div class="kiosk-cta-content">
+                <h2>Visit Any GV Florida Station</h2>
+                <p>Find a self-service kiosk at all major terminals. Book your next trip in minutes — no smartphone needed.</p>
+                <div class="kiosk-cta-btns">
+                    <a href="destinations.html" class="btn btn-outline btn-lg light">View Destinations</a>
+                    <a href="schedule.html" class="btn btn-outline btn-lg light">Check Schedule</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GV Florida Transport, Inc.</h3>
+                    <p>Your trusted bus transport company providing safe, comfortable, and reliable travel across Luzon since establishment.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/gvfloridatransportinc/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="app.html">Get the App</a></li>
+                        <li><a href="kiosk.html">Kiosk</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 832 AH Lacson Ave. Cor. Earnshaw St. Sampaloc, Manila</li>
+                        <li><i class="fas fa-phone"></i> 02-493-7956</li>
+                        <li><i class="fas fa-envelope"></i> gvfloridatrans@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Book Online</h3>
+                    <p>Reserve your seat online through our mobile app or kiosk.</p>
+                    <a href="booking.html" class="btn btn-outline btn-sm">Book Now</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GV Florida Transport, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

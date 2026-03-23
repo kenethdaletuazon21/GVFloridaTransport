@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logoround.png">
+    <title>Gallery - GV Florida Transport, Inc.</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="GV Florida Transport" class="logo-img">
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span class="hamburger"></span></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+                <li><a href="booking.html" class="nav-link">Book Now</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="app.html" class="nav-link">Get the App</a></li>
+                <li><a href="kiosk.html" class="nav-link">Kiosk</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Gallery</h1>
+            <p>Take a look at our fleet and services</p>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-1.jpg" alt="GV Florida Bus Exterior">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-2.jpg" alt="Bus on the Road">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-3.jpg" alt="Bus Fleet">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-4.jpg" alt="GV Florida Bus Side View">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-5.jpg" alt="Bus Interior">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-6.jpg" alt="Comfortable Seats">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-7.jpg" alt="Night Trip Service">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-8.jpg" alt="Bus Terminal">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="assets/images/gallery/gallery-9.jpg" alt="Bus on Highway">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-prev" onclick="navigateLightbox(event, -1)">&#10094;</button>
+        <button class="lightbox-next" onclick="navigateLightbox(event, 1)">&#10095;</button>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GV Florida Transport, Inc.</h3>
+                    <p>Your trusted bus transport company providing safe, comfortable, and reliable travel across Luzon.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/gvfloridatransportinc/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 832 AH Lacson Ave. Cor. Earnshaw St. Sampaloc, Manila</li>
+                        <li><i class="fas fa-phone"></i> 02-493-7956</li>
+                        <li><i class="fas fa-envelope"></i> gvfloridatrans@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Book Online</h3>
+                    <p>Reserve your seat online through our mobile app or kiosk.</p>
+                    <a href="booking.html" class="btn btn-outline btn-sm">Book Now</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GV Florida Transport, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
