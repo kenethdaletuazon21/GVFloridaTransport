@@ -3856,8 +3856,11 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
     .kiosk-hero-mockup { justify-content: center; width: 100%; }
     .kiosk-frame { align-items: center; margin: 0 auto; }
-    .kiosk-body { width: 100%; max-width: 340px; }
+    .kiosk-body { width: 100%; max-width: none; }
+    .kiosk-welcome { display: flex; flex-direction: row; align-items: center; gap: 12px; text-align: left; padding: 12px 16px; }
+    .kiosk-logo { width: 42px; margin: 0; flex-shrink: 0; }
     .kiosk-home-grid { grid-template-columns: 1fr 1fr; }
+    .kiosk-home-btn { padding: 12px 8px; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
     .kiosk-admin-note { flex-direction: column; text-align: center; align-items: center; }
     .ks-amount-grid { grid-template-columns: repeat(2, 1fr); }
