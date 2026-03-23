@@ -583,9 +583,20 @@ img { max-width: 100%; height: auto; display: block; }
    FOOTER
    ============================================= */
 .footer {
-    background: linear-gradient(180deg, #1a2332 0%, #141c27 100%);
+    background: linear-gradient(135deg, var(--secondary-dark) 0%, #1a1028 40%, var(--primary-dark) 100%);
     color: var(--white);
     padding: 60px 0 30px;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary), var(--primary), var(--primary-light));
 }
 
 .footer-grid {
@@ -609,12 +620,12 @@ img { max-width: 100%; height: auto; display: block; }
     left: 0;
     width: 40px;
     height: 3px;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
     border-radius: 2px;
 }
 
 .footer-col p {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.75);
     font-size: 0.95rem;
     line-height: 1.8;
 }
@@ -624,7 +635,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .footer-col ul li a {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.75);
     font-size: 0.95rem;
     transition: var(--transition);
 }
@@ -638,12 +649,12 @@ img { max-width: 100%; height: auto; display: block; }
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.75);
     font-size: 0.95rem;
 }
 
 .contact-info li i {
-    color: var(--primary);
+    color: var(--primary-light);
     margin-top: 4px;
     min-width: 16px;
 }
@@ -658,26 +669,43 @@ img { max-width: 100%; height: auto; display: block; }
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(217,0,69,0.15);
+    border: 1px solid rgba(217,0,69,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    color: var(--primary-light);
     transition: var(--transition);
 }
 
 .social-links a:hover {
     background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
     transform: translateY(-3px);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(217,0,69,0.2);
     color: rgba(255,255,255,0.5);
     font-size: 0.9rem;
 }
+
+/* Utility classes replacing inline styles */
+.contact-form-title {
+    color: var(--primary);
+    margin-bottom: 25px;
+}
+.btn-full { width: 100%; }
+.link-primary { color: var(--primary); }
+.link-primary:hover { color: var(--primary-dark); }
+.link-bold { font-weight: 600; }
+.contact-note { font-size: 0.85rem; color: #888; margin-top: 5px; }
+.schedule-table-wrap { overflow-x: auto; }
+.schedule-note-block { text-align: center; margin-bottom: 40px; }
+.schedule-note { color: var(--text-light); font-style: italic; }
 
 /* =============================================
    ABOUT PAGE

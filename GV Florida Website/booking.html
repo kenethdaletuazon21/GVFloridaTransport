@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logoround.png">
     <title>GV Florida Transport, Inc. - Book Now</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -81,7 +82,7 @@
                     <div class="booking-form-grid">
                         <div class="bk-field">
                             <label><i class="fas fa-map-marker-alt"></i> Origin</label>
-                            <select id="bkOrigin" class="bk-input">
+                            <select id="bkOrigin" class="bk-input" title="Select origin terminal" aria-label="Origin terminal">
                                 <option value="Manila (Sampaloc)">GV Florida Terminal Sampaloc, Manila</option>
                                 <option value="Quezon City (EDSA)">GV Florida Terminal Quezon City (EDSA)</option>
                                 <option value="Laoag">GV Florida Terminal Ilocos Norte (Laoag)</option>
@@ -90,7 +91,7 @@
                         </div>
                         <div class="bk-field">
                             <label><i class="fas fa-map-pin"></i> Destination</label>
-                            <select id="bkDest" class="bk-input">
+                            <select id="bkDest" class="bk-input" title="Select destination" aria-label="Destination">
                                 <option value="">Select destination</option>
                                 <option value="Tuguegarao">Tuguegarao</option>
                                 <option value="Santiago">Santiago</option>
@@ -108,11 +109,11 @@
                         </div>
                         <div class="bk-field">
                             <label><i class="fas fa-calendar"></i> Travel Date</label>
-                            <input type="date" id="bkDate" class="bk-input">
+                            <input type="date" id="bkDate" class="bk-input" title="Travel date" aria-label="Travel date">
                         </div>
                         <div class="bk-field">
                             <label><i class="fas fa-filter"></i> Bus Type</label>
-                            <select id="bkType" class="bk-input">
+                            <select id="bkType" class="bk-input" title="Select bus type" aria-label="Bus type">
                                 <option value="">All Types</option>
                                 <option value="regular">Regular</option>
                                 <option value="deluxe">Deluxe</option>
