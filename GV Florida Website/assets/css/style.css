@@ -2068,56 +2068,125 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 1.2rem;
 }
 
-/* Kiosk Tablet Mockup */
+/* Kiosk Hardware Mockup */
 .kiosk-hero-mockup {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
-.tablet-mockup {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    background: #1a1a2e;
-    border-radius: 24px;
-    padding: 16px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.08);
-    gap: 0;
-    max-width: 640px;
-    width: 100%;
-}
-.tablet-bezel-left,
-.tablet-bezel-right {
+
+/* Outer kiosk enclosure */
+.kiosk-enclosure {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 40px;
-    flex-shrink: 0;
+    background: linear-gradient(160deg, #2c2c3e 0%, #1a1a2e 100%);
+    border-radius: 20px 20px 4px 4px;
+    padding: 16px 20px 0;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255,255,255,0.07);
+    width: 300px;
 }
-.tablet-camera {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
+
+/* Top branding bar of kiosk enclosure */
+.kiosk-enc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px 12px;
+    width: 100%;
 }
-.tablet-home-btn {
+.kiosk-enc-logo {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.25);
-    background: rgba(255,255,255,0.08);
 }
-.tablet-screen-wrap {
-    flex: 1;
-    border-radius: 12px;
-    overflow: hidden;
+.kiosk-enc-header span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Tablet mount inside kiosk */
+.kiosk-tablet-mount {
+    width: 100%;
+}
+.kiosk-tablet-bezel {
+    background: #111122;
+    border-radius: 14px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.1);
+}
+.kiosk-tablet-camera {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+}
+.kiosk-tablet-home-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.06);
+}
+
+/* Card reader & receipt footer */
+.kiosk-enc-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 12px 8px 14px;
+    gap: 10px;
+}
+.kiosk-card-reader,
+.kiosk-receipt-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.kiosk-card-reader span,
+.kiosk-receipt-slot span {
+    font-size: 0.5rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.kiosk-card-slot {
+    width: 48px;
+    height: 8px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.kiosk-receipt-strip {
+    width: 32px;
+    height: 6px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 2px;
+}
+
+/* Kiosk base stand */
+.kiosk-enc-base {
+    width: 120px;
+    height: 16px;
+    background: linear-gradient(180deg, #333 0%, #222 100%);
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
 }
 .kiosk-screen {
     background: var(--white);
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
-    min-height: 260px;
+    width: 100%;
 }
 .kiosk-status-bar {
     display: flex;
@@ -2149,9 +2218,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .kiosk-home-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
-    padding: 12px 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px 12px;
 }
 .kiosk-home-btn {
     background: var(--light);
@@ -3873,11 +3942,8 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-hardware-grid { grid-template-columns: 1fr; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
     .kiosk-hero-mockup { justify-content: center; width: 100%; }
-    .tablet-mockup { max-width: 100%; border-radius: 18px; padding: 10px; }
-    .tablet-bezel-left, .tablet-bezel-right { width: 28px; }
-    .tablet-home-btn { width: 20px; height: 20px; }
-    .kiosk-home-grid { grid-template-columns: 1fr 1fr; }
-    .kiosk-home-btn { padding: 12px 8px; }
+    .kiosk-enclosure { width: 260px; }
+    .kiosk-home-btn { padding: 10px 6px; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
     .kiosk-admin-note { flex-direction: column; text-align: center; align-items: center; }
     .ks-amount-grid { grid-template-columns: repeat(2, 1fr); }
