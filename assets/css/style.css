@@ -1,81 +1,20 @@
-/* Kiosk mockup mobile fixes */
-@media (max-width: 768px) {
-    .kiosk-hero-mockup {
-        justify-content: center;
-        width: 100%;
-        overflow-x: auto;
-        padding-left: 0;
-        padding-right: 0;
-    }
-    .kiosk-enclosure {
-        width: 100%;
-        max-width: 340px;
-        margin: 0 auto;
-        box-sizing: border-box;
-    }
-    .kiosk-tablet-mount {
-        width: 100%;
-        max-width: 340px;
-        margin: 0 auto;
-    }
-    .kiosk-tablet-bezel {
-        width: 100%;
-        max-width: 340px;
-        margin: 0 auto;
-        box-sizing: border-box;
-    }
-    .kiosk-screen {
-        min-width: 0;
-        min-height: 220px;
-        font-size: 0.98rem;
-    }
-    .kiosk-enc-header, .kiosk-enc-footer {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-    .kiosk-home-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 10px 4px;
-    }
-    .kiosk-home-btn {
-        padding: 12px 4px;
-        font-size: 0.95em;
-    }
-    .kiosk-lang-bar {
-        padding: 8px 4px 10px;
-        font-size: 0.7rem;
-    }
-}
-/* Real-time tracking info below phone mockup */
-.realtime-tracking-info {
-    margin-top: 18px;
+/* Step 7 mobile description (only show on mobile) */
+.step7-mobile-desc {
+    display: none;
+    background: #f8f8f8;
+    border-radius: 10px;
+    margin: 18px 0 0 0;
+    padding: 14px 16px;
+    font-size: 1.08rem;
+    color: #222;
     text-align: center;
-    background: #fff8f3;
-    border-radius: 12px;
-    padding: 16px 12px 12px 12px;
-    box-shadow: 0 2px 12px rgba(217,0,69,0.07);
-    font-size: 1rem;
-    color: #b1003a;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    font-weight: 500;
 }
-.realtime-tracking-info strong {
-    display: block;
-    font-size: 1.08em;
-    margin-bottom: 6px;
-    color: #d1003a;
-}
-.realtime-tracking-info span {
-    font-size: 0.98em;
-    color: #b1003a;
-}
+
 @media (max-width: 768px) {
-    .realtime-tracking-info {
-        font-size: 0.98rem;
-        padding: 14px 8px 10px 8px;
-        max-width: 95vw;
+    .step7-mobile-desc {
+        display: block;
     }
 }
 /* =============================================
@@ -1364,7 +1303,7 @@ img { max-width: 100%; height: auto; display: block; }
     /* === SCHEDULE === */
     .schedule-table { font-size: 0.82rem; }
     .schedule-table th, .schedule-table td { padding: 8px 10px; }
-    .schedule-table-wrap { /* -webkit-overflow-scrolling: auto; */ }
+    .schedule-table-wrap { -webkit-overflow-scrolling: auto; }
 
     /* === GALLERY === */
     .gallery-grid { grid-template-columns: 1fr 1fr; }
