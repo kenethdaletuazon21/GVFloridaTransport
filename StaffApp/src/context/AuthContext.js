@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { authAPI } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -9,22 +7,34 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    AsyncStorage.getItem('staff_token').then(token => {
-      if (token) AsyncStorage.getItem('staff_user').then(u => { if (u) setUser(JSON.parse(u)); });
-    }).finally(() => setLoading(false));
+    const token = localStorage.getItem('staff_token');
+    if (token) {
+      const u = localStorage.getItem('staff_user');
+      if (u) setUser(JSON.parse(u));
+    }
+    setLoading(false);
   }, []);
 
   const login = async (userId, password) => {
-    const { data } = await authAPI.login({ user_id: userId, password });
-    const staffRoles = ['driver', 'conductor', 'inspector', 'dispatcher'];
-    if (!staffRoles.includes(data.user?.role)) throw new Error('Unauthorized: Staff access only');
-    await AsyncStorage.setItem('staff_token', data.token);
-    await AsyncStorage.setItem('staff_user', JSON.stringify(data.user));
-    setUser(data.user);
+    // Demo login – accept any credentials
+    const demoUser = {
+      id: 'STAFF-001',
+      first_name: 'Carlos',
+      last_name: 'Reyes',
+      role: 'driver',
+      email: 'carlos.reyes@gvflorida.com',
+      phone: '0917-555-1234',
+      employee_id: userId || 'DRV-2024-001',
+      terminal: 'Cubao Main Terminal',
+    };
+    localStorage.setItem('staff_token', 'demo-staff-token');
+    localStorage.setItem('staff_user', JSON.stringify(demoUser));
+    setUser(demoUser);
   };
 
-  const logout = async () => {
-    await AsyncStorage.multiRemove(['staff_token', 'staff_user']);
+  const logout = () => {
+    localStorage.removeItem('staff_token');
+    localStorage.removeItem('staff_user');
     setUser(null);
   };
 

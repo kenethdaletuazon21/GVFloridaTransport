@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FaArrowLeft, FaUser, FaLock, FaEnvelope, FaPhone,
-  FaSignInAlt, FaUserPlus, FaTicketAlt, FaSearch
+  FaSignInAlt, FaUserPlus, FaTicketAlt, FaSearch, FaEye, FaEyeSlash
 } from 'react-icons/fa';
 import KioskHeader from '../components/KioskHeader';
 
@@ -14,6 +14,8 @@ export default function AccountScreen() {
   const [lookupCode, setLookupCode] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [showLoginPw, setShowLoginPw] = useState(false);
+  const [showRegisterPw, setShowRegisterPw] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -113,6 +115,12 @@ export default function AccountScreen() {
       <h1 className="screen-title" style={{ textAlign: 'center' }}>Sign In</h1>
       <p className="screen-subtitle" style={{ textAlign: 'center' }}>Enter your account credentials</p>
 
+      <div style={{ background: '#e8f5e9', border: '1px solid #a5d6a7', borderRadius: 12, padding: 14, marginBottom: 16, fontSize: 13 }}>
+        <strong style={{ color: '#2e7d32' }}>Demo Credentials</strong>
+        <div style={{ marginTop: 4 }}>Email: <strong>juan@gvflorida.com</strong></div>
+        <div>Password: <strong>demo123</strong></div>
+      </div>
+
       <form onSubmit={handleLogin} className="kiosk-card">
         <div style={{ marginBottom: 16 }}>
           <label className="input-label"><FaEnvelope style={{ marginRight: 6 }} />Email</label>
@@ -127,14 +135,21 @@ export default function AccountScreen() {
         </div>
         <div style={{ marginBottom: 24 }}>
           <label className="input-label"><FaLock style={{ marginRight: 6 }} />Password</label>
-          <input
-            className="kiosk-input"
-            type="password"
-            placeholder="Enter password"
-            value={loginForm.password}
-            onChange={e => setLoginForm(p => ({ ...p, password: e.target.value }))}
-            required
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              className="kiosk-input"
+              type={showLoginPw ? 'text' : 'password'}
+              placeholder="Enter password"
+              value={loginForm.password}
+              onChange={e => setLoginForm(p => ({ ...p, password: e.target.value }))}
+              style={{ paddingRight: 64 }}
+              required
+            />
+            <button type="button" onClick={() => setShowLoginPw(p => !p)}
+              style={{ position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#9e9e9e', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 6, fontSize: 22 }}>
+              {showLoginPw ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         </div>
         <button type="submit" className="touch-btn full large">
           <FaSignInAlt /> Sign In
@@ -182,14 +197,21 @@ export default function AccountScreen() {
         </div>
         <div style={{ marginBottom: 24 }}>
           <label className="input-label"><FaLock style={{ marginRight: 6 }} />Password</label>
-          <input
-            className="kiosk-input"
-            type="password"
-            placeholder="Create a password"
-            value={registerForm.password}
-            onChange={e => setRegisterForm(p => ({ ...p, password: e.target.value }))}
-            required
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              className="kiosk-input"
+              type={showRegisterPw ? 'text' : 'password'}
+              placeholder="Create a password"
+              value={registerForm.password}
+              onChange={e => setRegisterForm(p => ({ ...p, password: e.target.value }))}
+              style={{ paddingRight: 64 }}
+              required
+            />
+            <button type="button" onClick={() => setShowRegisterPw(p => !p)}
+              style={{ position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#9e9e9e', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 6, fontSize: 22 }}>
+              {showRegisterPw ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         </div>
         <button type="submit" className="touch-btn full large success">
           <FaUserPlus /> Create Account

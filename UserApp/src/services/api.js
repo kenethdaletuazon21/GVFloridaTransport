@@ -1,21 +1,20 @@
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_BASE = 'http://localhost:5000/api'; // Change for production
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const api = axios.create({ baseURL: API_BASE, timeout: 15000 });
 
-const api = axios.create({ baseURL: API_BASE, timeout: 30000 });
-
-api.interceptors.request.use(async (config) => {
-  const token = await AsyncStorage.getItem('gvf_token');
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('gvf_token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
 api.interceptors.response.use(
   (res) => res,
-  async (err) => {
+  (err) => {
     if (err.response?.status === 401) {
-      await AsyncStorage.multiRemove(['gvf_token', 'gvf_user']);
+      localStorage.removeItem('gvf_token');
+      localStorage.removeItem('gvf_user');
     }
     return Promise.reject(err);
   }
@@ -29,8 +28,6 @@ export const authAPI = {
 export const userAPI = {
   getProfile: () => api.get('/users/profile'),
   updateProfile: (data) => api.put('/users/profile', data),
-  getTrips: () => api.get('/users/trips'),
-  getLoyalty: () => api.get('/users/loyalty'),
 };
 
 export const bookingAPI = {
@@ -41,27 +38,10 @@ export const bookingAPI = {
   cancel: (id) => api.put(`/bookings/${id}/cancel`),
 };
 
-export const paymentAPI = {
-  process: (data) => api.post('/payments', data),
-  getHistory: () => api.get('/payments/history'),
-  getReceipt: (id) => api.get(`/payments/${id}/receipt`),
-};
-
 export const walletAPI = {
   getBalance: () => api.get('/wallet/balance'),
   topUp: (data) => api.post('/wallet/topup', data),
-  pay: (data) => api.post('/wallet/pay', data),
   getTransactions: () => api.get('/wallet/transactions'),
-};
-
-export const trackingAPI = {
-  getTripLocation: (tripId) => api.get(`/tracking/trip/${tripId}`),
-};
-
-export const notificationAPI = {
-  getAll: () => api.get('/notifications'),
-  markRead: (id) => api.put(`/notifications/${id}/read`),
-  markAllRead: () => api.put('/notifications/read-all'),
 };
 
 export const routeAPI = {

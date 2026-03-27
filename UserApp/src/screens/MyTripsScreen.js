@@ -1,111 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { format } from 'date-fns';
-import { userAPI } from '../services/api';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FiCalendar, FiMapPin, FiClock, FiChevronRight } from 'react-icons/fi';
+import { format, addDays, subDays } from 'date-fns';
+import BottomTabs from '../components/BottomTabs';
 
-const TABS = ['Upcoming', 'Completed', 'Cancelled'];
-
-const DEMO_TRIPS = [
-  { id: 1, booking_code: 'GVF-AB12CD', route_name: 'Manila to Tuguegarao', departure_time: '2025-02-15T06:00:00', arrival_time: '2025-02-15T18:00:00', seat_number: 12, bus_type: 'deluxe', fare: 950, status: 'confirmed' },
-  { id: 2, booking_code: 'GVF-EF34GH', route_name: 'Manila to Santiago', departure_time: '2025-02-20T08:30:00', arrival_time: '2025-02-20T17:00:00', seat_number: 5, bus_type: 'super_deluxe', fare: 850, status: 'confirmed' },
-  { id: 3, booking_code: 'GVF-IJ56KL', route_name: 'Manila to Ilagan', departure_time: '2025-01-10T07:00:00', arrival_time: '2025-01-10T17:30:00', seat_number: 22, bus_type: 'regular', fare: 900, status: 'completed', rating: 5 },
-  { id: 4, booking_code: 'GVF-MN78OP', route_name: 'Manila to Tabuk', departure_time: '2025-01-05T05:30:00', arrival_time: '2025-01-05T19:00:00', seat_number: 8, bus_type: 'deluxe', fare: 1050, status: 'completed', rating: 4 },
-  { id: 5, booking_code: 'GVF-QR90ST', route_name: 'Manila to Cauayan', departure_time: '2024-12-25T09:00:00', arrival_time: '2024-12-25T18:00:00', seat_number: 15, bus_type: 'regular', fare: 800, status: 'cancelled' },
+const demoTrips = [
+  { id: 1, destination: 'Naga City', date: format(addDays(new Date(), 1), 'yyyy-MM-dd'), departure: '06:00 AM', arrival: '02:00 PM', seats: ['12A', '12B'], status: 'upcoming', busNumber: 'GVF-2847', total: 1500, bookingCode: 'GVF-20250001' },
+  { id: 2, destination: 'Legazpi City', date: format(addDays(new Date(), 3), 'yyyy-MM-dd'), departure: '08:00 PM', arrival: '06:00 AM', seats: ['5A'], status: 'upcoming', busNumber: 'GVF-1122', total: 950, bookingCode: 'GVF-20250002' },
+  { id: 3, destination: 'Daet', date: format(subDays(new Date(), 5), 'yyyy-MM-dd'), departure: '10:00 PM', arrival: '04:00 AM', seats: ['8C'], status: 'completed', busNumber: 'GVF-3391', total: 680, bookingCode: 'GVF-20240098' },
+  { id: 4, destination: 'Sorsogon', date: format(subDays(new Date(), 12), 'yyyy-MM-dd'), departure: '09:00 PM', arrival: '07:00 AM', seats: ['3A', '3B'], status: 'completed', busNumber: 'GVF-4420', total: 2100, bookingCode: 'GVF-20240085' },
 ];
 
-export default function MyTripsScreen({ navigation }) {
-  const [tab, setTab] = useState('Upcoming');
-  const [trips, setTrips] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function MyTripsScreen() {
+  const navigate = useNavigate();
+  const [tab, setTab] = useState('upcoming');
 
-  useEffect(() => { loadTrips(); }, []);
-
-  const loadTrips = async () => {
-    try {
-      const { data } = await userAPI.getTrips();
-      setTrips(data.trips || data || []);
-    } catch (_) { setTrips(DEMO_TRIPS); }
-    setLoading(false);
-  };
-
-  const filtered = trips.filter(t => {
-    if (tab === 'Upcoming') return t.status === 'confirmed' || t.status === 'booked';
-    if (tab === 'Completed') return t.status === 'completed';
-    return t.status === 'cancelled';
-  });
-
-  const renderTrip = ({ item }) => (
-    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('TripDetail', { trip: item })}>
-      <View style={styles.cardHeader}>
-        <Text style={styles.bookingCode}>{item.booking_code}</Text>
-        <View style={[styles.statusBadge, { backgroundColor: item.status === 'confirmed' ? '#eafaf1' : item.status === 'completed' ? '#e8f0f5' : '#fde8e8' }]}>
-          <Text style={[styles.statusText, { color: item.status === 'confirmed' ? '#27ae60' : item.status === 'completed' ? '#1a5276' : '#e74c3c' }]}>{item.status}</Text>
-        </View>
-      </View>
-      <Text style={styles.routeName}>{item.route_name}</Text>
-      <View style={styles.cardDetails}>
-        <View style={styles.detailItem}><Icon name="calendar" size={14} color="#888" /><Text style={styles.detailText}>{format(new Date(item.departure_time), 'MMM dd, yyyy')}</Text></View>
-        <View style={styles.detailItem}><Icon name="clock" size={14} color="#888" /><Text style={styles.detailText}>{format(new Date(item.departure_time), 'hh:mm a')}</Text></View>
-        <View style={styles.detailItem}><Icon name="hash" size={14} color="#888" /><Text style={styles.detailText}>Seat {item.seat_number}</Text></View>
-      </View>
-      <View style={styles.cardFooter}>
-        <Text style={styles.busType}>{item.bus_type?.replace('_', ' ').toUpperCase()}</Text>
-        <Text style={styles.fare}>₱{item.fare?.toLocaleString()}</Text>
-      </View>
-      {item.status === 'completed' && item.rating && (
-        <View style={styles.ratingRow}>
-          {[1,2,3,4,5].map(s => <Icon key={s} name="star" size={14} color={s <= item.rating ? '#f1c40f' : '#ddd'} />)}
-        </View>
-      )}
-    </TouchableOpacity>
-  );
+  const filtered = demoTrips.filter(t => t.status === tab);
 
   return (
-    <View style={styles.container}>
-      {/* Tabs */}
-      <View style={styles.tabs}>
-        {TABS.map(t => (
-          <TouchableOpacity key={t} style={[styles.tab, tab === t && styles.tabActive]} onPress={() => setTab(t)}>
-            <Text style={[styles.tabText, tab === t && styles.tabTextActive]}>{t}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+    <div className="screen">
+      <div className="screen-header"><h2>My Trips</h2></div>
+      <div className="screen-body" style={{ paddingBottom: 70 }}>
+        <div style={{ display: 'flex', gap: 0, marginBottom: 16, background: '#f0f0f0', borderRadius: 10, padding: 3 }}>
+          {['upcoming', 'completed'].map(t => (
+            <button key={t} onClick={() => setTab(t)}
+              style={{ flex: 1, padding: '10px 0', border: 'none', borderRadius: 8, fontWeight: 600, fontSize: 14, cursor: 'pointer',
+                background: tab === t ? '#fff' : 'transparent', color: tab === t ? 'var(--primary)' : '#888',
+                boxShadow: tab === t ? '0 1px 4px rgba(0,0,0,.1)' : 'none' }}>
+              {t === 'upcoming' ? 'Upcoming' : 'Completed'}
+            </button>
+          ))}
+        </div>
 
-      {loading ? <ActivityIndicator size="large" color="#1a5276" style={{ marginTop: 40 }} /> : (
-        <FlatList
-          data={filtered}
-          keyExtractor={item => String(item.id)}
-          renderItem={renderTrip}
-          contentContainerStyle={styles.list}
-          ListEmptyComponent={<View style={styles.empty}><Icon name="inbox" size={48} color="#ccc" /><Text style={styles.emptyText}>No {tab.toLowerCase()} trips</Text></View>}
-        />
-      )}
-    </View>
+        {filtered.length === 0 && <div style={{ textAlign: 'center', padding: 40, color: '#999' }}>No {tab} trips</div>}
+
+        {filtered.map(trip => (
+          <div key={trip.id} className="card" style={{ cursor: 'pointer', marginBottom: 12 }}
+            onClick={() => navigate(`/trip/${trip.id}`, { state: { trip } })}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+              <span style={{ fontWeight: 700, fontSize: 16 }}>{trip.destination}</span>
+              <span className={`badge ${trip.status === 'upcoming' ? 'badge-primary' : 'badge-success'}`}>{trip.status}</span>
+            </div>
+            <div style={{ display: 'flex', gap: 16, fontSize: 13, color: '#666', marginBottom: 8 }}>
+              <span><FiCalendar style={{ marginRight: 4 }} />{format(new Date(trip.date), 'MMM dd, yyyy')}</span>
+              <span><FiClock style={{ marginRight: 4 }} />{trip.departure}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13 }}>
+              <span style={{ color: '#999' }}><FiMapPin style={{ marginRight: 4 }} />Seats: {trip.seats.join(', ')}</span>
+              <span style={{ fontWeight: 700, color: 'var(--primary)' }}>₱{trip.total.toLocaleString()} <FiChevronRight /></span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <BottomTabs />
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f6fa' },
-  tabs: { flexDirection: 'row', backgroundColor: '#fff', paddingHorizontal: 16, paddingTop: 12, borderBottomWidth: 1, borderBottomColor: '#eee' },
-  tab: { flex: 1, paddingVertical: 12, alignItems: 'center', borderBottomWidth: 3, borderBottomColor: 'transparent' },
-  tabActive: { borderBottomColor: '#1a5276' },
-  tabText: { fontSize: 14, fontWeight: '600', color: '#888' },
-  tabTextActive: { color: '#1a5276' },
-  list: { padding: 16 },
-  card: { backgroundColor: '#fff', borderRadius: 16, padding: 16, marginBottom: 12, elevation: 2 },
-  cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 },
-  bookingCode: { fontSize: 13, fontWeight: '700', color: '#888', letterSpacing: 1 },
-  statusBadge: { paddingHorizontal: 10, paddingVertical: 3, borderRadius: 8 },
-  statusText: { fontSize: 12, fontWeight: '600', textTransform: 'capitalize' },
-  routeName: { fontSize: 17, fontWeight: '700', color: '#333', marginBottom: 10 },
-  cardDetails: { flexDirection: 'row', gap: 16, marginBottom: 10 },
-  detailItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  detailText: { fontSize: 13, color: '#666' },
-  cardFooter: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  busType: { fontSize: 11, fontWeight: '600', color: '#1a5276', backgroundColor: '#e8f0f5', paddingHorizontal: 10, paddingVertical: 3, borderRadius: 6 },
-  fare: { fontSize: 18, fontWeight: 'bold', color: '#1a5276' },
-  ratingRow: { flexDirection: 'row', gap: 2, marginTop: 8 },
-  empty: { alignItems: 'center', marginTop: 60, gap: 12 },
-  emptyText: { fontSize: 16, color: '#888' },
-});

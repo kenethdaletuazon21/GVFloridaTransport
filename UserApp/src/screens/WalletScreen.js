@@ -1,161 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList, TextInput, ActivityIndicator, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { format } from 'date-fns';
-import { walletAPI } from '../services/api';
-import Toast from 'react-native-toast-message';
+import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { FiPlus, FiArrowUpRight, FiArrowDownLeft, FiCreditCard } from 'react-icons/fi';
+import BottomTabs from '../components/BottomTabs';
 
-const TOPUP_AMOUNTS = [100, 200, 500, 1000, 2000, 5000];
+const transactions = [
+  { id: 1, type: 'topup', label: 'GCash Top Up', amount: 500, date: 'Today, 10:30 AM' },
+  { id: 2, type: 'payment', label: 'Naga City — 2 seats', amount: -1500, date: 'Today, 09:15 AM' },
+  { id: 3, type: 'topup', label: 'Bank Transfer', amount: 2000, date: 'Yesterday, 03:00 PM' },
+  { id: 4, type: 'refund', label: 'Cancelled — Legazpi', amount: 750, date: 'Jan 15, 11:00 AM' },
+  { id: 5, type: 'payment', label: 'Daet — 1 seat', amount: -680, date: 'Jan 12, 08:00 PM' },
+];
 
-export default function WalletScreen({ navigation }) {
-  const [balance, setBalance] = useState(2500);
-  const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function WalletScreen() {
+  const { user } = useAuth();
   const [showTopUp, setShowTopUp] = useState(false);
-  const [topUpAmount, setTopUpAmount] = useState('');
-  const [processing, setProcessing] = useState(false);
-
-  useEffect(() => { loadWallet(); }, []);
-
-  const loadWallet = async () => {
-    try {
-      const [balRes, txRes] = await Promise.all([walletAPI.getBalance(), walletAPI.getTransactions()]);
-      setBalance(balRes.data?.balance ?? 2500);
-      setTransactions(txRes.data?.transactions || txRes.data || []);
-    } catch (_) {
-      setTransactions([
-        { id: 1, type: 'topup', amount: 2000, method: 'GCash', created_at: '2025-02-10T10:00:00', status: 'completed' },
-        { id: 2, type: 'payment', amount: -950, description: 'Manila to Tuguegarao', created_at: '2025-02-08T06:30:00', status: 'completed' },
-        { id: 3, type: 'topup', amount: 1000, method: 'PayMaya', created_at: '2025-02-05T14:20:00', status: 'completed' },
-        { id: 4, type: 'refund', amount: 850, description: 'Cancelled booking refund', created_at: '2025-02-03T09:15:00', status: 'completed' },
-        { id: 5, type: 'payment', amount: -850, description: 'Manila to Santiago', created_at: '2025-02-01T08:00:00', status: 'completed' },
-        { id: 6, type: 'topup', amount: 500, method: 'Bank Transfer', created_at: '2025-01-28T16:45:00', status: 'completed' },
-      ]);
-    }
-    setLoading(false);
-  };
-
-  const handleTopUp = async () => {
-    const amt = parseInt(topUpAmount);
-    if (!amt || amt < 50) { Toast.show({ type: 'error', text1: 'Minimum top-up is ₱50' }); return; }
-    if (amt > 50000) { Toast.show({ type: 'error', text1: 'Maximum top-up is ₱50,000' }); return; }
-    setProcessing(true);
-    try { await walletAPI.topUp({ amount: amt, method: 'gcash' }); } catch (_) {}
-    setBalance(prev => prev + amt);
-    setShowTopUp(false);
-    setTopUpAmount('');
-    setProcessing(false);
-    Toast.show({ type: 'success', text1: 'Top-up successful', text2: `₱${amt.toLocaleString()} added to your wallet` });
-  };
-
-  const getIcon = (type) => {
-    if (type === 'topup') return { name: 'arrow-down-circle', color: '#27ae60' };
-    if (type === 'refund') return { name: 'rotate-ccw', color: '#3498db' };
-    return { name: 'arrow-up-circle', color: '#e74c3c' };
-  };
-
-  const renderTransaction = ({ item }) => {
-    const icon = getIcon(item.type);
-    return (
-      <View style={styles.txItem}>
-        <View style={[styles.txIconWrap, { backgroundColor: icon.color + '15' }]}><Icon name={icon.name} size={20} color={icon.color} /></View>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.txTitle}>{item.type === 'topup' ? `Top Up via ${item.method}` : item.type === 'refund' ? 'Refund' : item.description}</Text>
-          <Text style={styles.txDate}>{format(new Date(item.created_at), 'MMM dd, yyyy • hh:mm a')}</Text>
-        </View>
-        <Text style={[styles.txAmount, { color: item.amount >= 0 ? '#27ae60' : '#e74c3c' }]}>{item.amount >= 0 ? '+' : ''}₱{Math.abs(item.amount).toLocaleString()}</Text>
-      </View>
-    );
-  };
+  const [topUpAmt, setTopUpAmt] = useState('');
 
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Balance Card */}
-        <View style={styles.balanceCard}>
-          <Text style={styles.balanceLabel}>Available Balance</Text>
-          <Text style={styles.balanceAmount}>₱{balance.toLocaleString()}</Text>
-          <View style={styles.balanceActions}>
-            <TouchableOpacity style={styles.actionBtn} onPress={() => setShowTopUp(true)}>
-              <Icon name="plus-circle" size={20} color="#fff" />
-              <Text style={styles.actionBtnText}>Top Up</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.actionBtnOutline}>
-              <Icon name="send" size={20} color="#fff" />
-              <Text style={styles.actionBtnText}>Transfer</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+    <div className="screen">
+      <div className="screen-header"><h2>GV Wallet</h2></div>
+      <div className="screen-body" style={{ paddingBottom: 70 }}>
+        <div className="wallet-card">
+          <div style={{ fontSize: 12, opacity: .8 }}>Available Balance</div>
+          <div style={{ fontSize: 32, fontWeight: 800 }}>₱{(user?.wallet_balance || 1500).toLocaleString()}.00</div>
+          <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
+            <button onClick={() => setShowTopUp(!showTopUp)}
+              style={{ flex: 1, padding: '10px', border: '1px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.15)', color: '#fff', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+              <FiPlus /> Top Up
+            </button>
+            <button style={{ flex: 1, padding: '10px', border: '1px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.15)', color: '#fff', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+              <FiCreditCard /> Transfer
+            </button>
+          </div>
+        </div>
 
-        {/* Quick Top-up */}
         {showTopUp && (
-          <View style={styles.topUpCard}>
-            <Text style={styles.sectionTitle}>Quick Top Up</Text>
-            <View style={styles.quickAmounts}>
-              {TOPUP_AMOUNTS.map(a => (
-                <TouchableOpacity key={a} style={[styles.amountChip, topUpAmount === String(a) && styles.amountChipActive]} onPress={() => setTopUpAmount(String(a))}>
-                  <Text style={[styles.amountChipText, topUpAmount === String(a) && styles.amountChipTextActive]}>₱{a.toLocaleString()}</Text>
-                </TouchableOpacity>
+          <div className="card" style={{ marginBottom: 16 }}>
+            <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12 }}>Top Up Wallet</h3>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+              {[100, 200, 500, 1000, 2000].map(a => (
+                <button key={a} onClick={() => setTopUpAmt(String(a))}
+                  style={{ padding: '8px 16px', borderRadius: 8, border: topUpAmt === String(a) ? '2px solid var(--primary)' : '1px solid #ddd', background: topUpAmt === String(a) ? '#fff0f3' : '#fff', fontWeight: 600, cursor: 'pointer', fontSize: 13 }}>
+                  ₱{a}
+                </button>
               ))}
-            </View>
-            <TextInput style={styles.amountInput} placeholder="Or enter amount" keyboardType="numeric" value={topUpAmount} onChangeText={setTopUpAmount} />
-            <View style={styles.topUpActions}>
-              <TouchableOpacity style={styles.cancelTopUp} onPress={() => { setShowTopUp(false); setTopUpAmount(''); }}>
-                <Text style={styles.cancelTopUpText}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={[styles.confirmTopUp, processing && { opacity: 0.5 }]} onPress={handleTopUp} disabled={processing}>
-                {processing ? <ActivityIndicator color="#fff" size="small" /> : <Text style={styles.confirmTopUpText}>Confirm Top Up</Text>}
-              </TouchableOpacity>
-            </View>
-          </View>
+            </div>
+            <input className="input" type="number" placeholder="Or enter amount" value={topUpAmt} onChange={e => setTopUpAmt(e.target.value)} />
+            <button className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}
+              onClick={() => { alert(`Top up ₱${topUpAmt} successful!`); setShowTopUp(false); setTopUpAmt(''); }}>
+              Confirm Top Up
+            </button>
+          </div>
         )}
 
-        {/* Transaction History */}
-        <View style={styles.txHeader}>
-          <Text style={styles.sectionTitle}>Transaction History</Text>
-        </View>
-        {loading ? <ActivityIndicator size="large" color="#1a5276" /> : (
-          transactions.length === 0 ? (
-            <View style={styles.empty}><Icon name="inbox" size={40} color="#ccc" /><Text style={styles.emptyText}>No transactions yet</Text></View>
-          ) : (
-            transactions.map(tx => <View key={tx.id}>{renderTransaction({ item: tx })}</View>)
-          )
-        )}
-      </ScrollView>
-      <Toast />
-    </View>
+        <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 12 }}>Transaction History</h3>
+        {transactions.map(tx => (
+          <div key={tx.id} className="transaction-item">
+            <div style={{ width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16,
+              background: tx.type === 'payment' ? '#fce4ec' : tx.type === 'refund' ? '#e3f2fd' : '#e8f5e9',
+              color: tx.type === 'payment' ? 'var(--primary)' : tx.type === 'refund' ? '#1976d2' : 'var(--success)' }}>
+              {tx.type === 'payment' ? <FiArrowUpRight /> : <FiArrowDownLeft />}
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>{tx.label}</div>
+              <div style={{ fontSize: 12, color: '#999' }}>{tx.date}</div>
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 14, color: tx.amount > 0 ? 'var(--success)' : 'var(--primary)' }}>
+              {tx.amount > 0 ? '+' : ''}₱{Math.abs(tx.amount).toLocaleString()}
+            </div>
+          </div>
+        ))}
+      </div>
+      <BottomTabs />
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f6fa' },
-  scroll: { padding: 20 },
-  balanceCard: { backgroundColor: '#1a5276', borderRadius: 20, padding: 24, marginBottom: 20, elevation: 4 },
-  balanceLabel: { fontSize: 14, color: 'rgba(255,255,255,0.7)', marginBottom: 4 },
-  balanceAmount: { fontSize: 36, fontWeight: 'bold', color: '#fff', marginBottom: 20 },
-  balanceActions: { flexDirection: 'row', gap: 12 },
-  actionBtn: { flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 12 },
-  actionBtnOutline: { flexDirection: 'row', alignItems: 'center', gap: 8, borderWidth: 1, borderColor: 'rgba(255,255,255,0.3)', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 12 },
-  actionBtnText: { color: '#fff', fontSize: 14, fontWeight: '600' },
-  topUpCard: { backgroundColor: '#fff', borderRadius: 16, padding: 18, marginBottom: 20, elevation: 2 },
-  sectionTitle: { fontSize: 16, fontWeight: '700', color: '#333', marginBottom: 12 },
-  quickAmounts: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 14 },
-  amountChip: { paddingHorizontal: 18, paddingVertical: 10, borderRadius: 10, backgroundColor: '#f0f0f0' },
-  amountChipActive: { backgroundColor: '#1a5276' },
-  amountChipText: { fontSize: 14, fontWeight: '600', color: '#333' },
-  amountChipTextActive: { color: '#fff' },
-  amountInput: { backgroundColor: '#f5f6fa', borderRadius: 12, padding: 14, fontSize: 16, marginBottom: 14 },
-  topUpActions: { flexDirection: 'row', gap: 12 },
-  cancelTopUp: { flex: 1, paddingVertical: 14, borderRadius: 12, borderWidth: 2, borderColor: '#ddd', alignItems: 'center' },
-  cancelTopUpText: { fontSize: 14, fontWeight: '600', color: '#888' },
-  confirmTopUp: { flex: 2, backgroundColor: '#1a5276', paddingVertical: 14, borderRadius: 12, alignItems: 'center' },
-  confirmTopUpText: { color: '#fff', fontSize: 14, fontWeight: '600' },
-  txHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
-  txItem: { flexDirection: 'row', alignItems: 'center', gap: 14, backgroundColor: '#fff', borderRadius: 14, padding: 16, marginBottom: 8, elevation: 1 },
-  txIconWrap: { width: 40, height: 40, borderRadius: 12, justifyContent: 'center', alignItems: 'center' },
-  txTitle: { fontSize: 14, fontWeight: '600', color: '#333' },
-  txDate: { fontSize: 12, color: '#888', marginTop: 2 },
-  txAmount: { fontSize: 16, fontWeight: '700' },
-  empty: { alignItems: 'center', marginTop: 40, gap: 10 },
-  emptyText: { fontSize: 15, color: '#888' },
-});

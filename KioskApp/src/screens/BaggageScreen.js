@@ -52,9 +52,9 @@ export default function BaggageScreen({ booking, setBooking }) {
   };
 
   return (
-    <div className="kiosk-screen">
-      <KioskHeader title="Baggage Declaration" />
-      <div className="kiosk-body baggage-body">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <KioskHeader />
+      <div className="kiosk-screen" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
         {/* Left Panel - Bag Configuration */}
         <div className="baggage-left">
           {/* Free Allowance Banner */}
@@ -180,10 +180,10 @@ export default function BaggageScreen({ booking, setBooking }) {
 
       {/* Bottom Navigation */}
       <div className="kiosk-bottom-bar">
-        <button className="back-btn" onClick={() => navigate('/passenger-info')}>
+        <button className="back-btn" style={{ marginBottom: 0 }} onClick={() => navigate('/passenger-info')}>
           <FaArrowLeft /> Back
         </button>
-        <button className="continue-btn" onClick={handleContinue}>
+        <button className="touch-btn large" onClick={handleContinue}>
           Continue to Payment <FaSuitcaseRolling />
         </button>
       </div>

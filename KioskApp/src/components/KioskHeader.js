@@ -13,11 +13,9 @@ export default function KioskHeader() {
     <div className="kiosk-header">
       <div className="logo-section">
         <img
-          src="/logo.png"
+          src="/logoround.png"
           alt="GV Florida"
-          onError={(e) => {
-            e.target.style.display = 'none';
-          }}
+          style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover' }}
         />
         <div>
           <h1>GV Florida Transport</h1>

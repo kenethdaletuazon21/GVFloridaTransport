@@ -1,216 +1,103 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert, Switch } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { AuthContext } from '../context/AuthContext';
-import { userAPI } from '../services/api';
-import Toast from 'react-native-toast-message';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { FiUser, FiCreditCard, FiShield, FiFileText, FiHelpCircle, FiLogOut, FiChevronRight, FiBell, FiMapPin, FiLock, FiEye, FiEyeOff, FiCheck } from 'react-icons/fi';
+import BottomTabs from '../components/BottomTabs';
 
-export default function ProfileScreen({ navigation }) {
-  const { user, logout, updateUser } = useContext(AuthContext);
-  const [editing, setEditing] = useState(false);
-  const [form, setForm] = useState({
-    first_name: user?.first_name || 'Juan',
-    last_name: user?.last_name || 'Dela Cruz',
-    email: user?.email || 'juan@email.com',
-    phone: user?.phone || '0917-123-4567',
-  });
-  const [notifs, setNotifs] = useState({ push: true, email: true, promo: false, tripUpdates: true });
+const menuItems = [
+  { icon: <FiUser />, label: 'Personal Information', color: '#6c63ff' },
+  { icon: <FiCreditCard />, label: 'Payment Methods', color: '#ff6f00' },
+  { icon: <FiBell />, label: 'Notifications', path: '/notifications', color: '#e91e63' },
+  { icon: <FiMapPin />, label: 'Saved Destinations', color: '#00bcd4' },
+  { icon: <FiShield />, label: 'Privacy Policy', color: '#4caf50' },
+  { icon: <FiFileText />, label: 'Terms & Conditions', color: '#607d8b' },
+  { icon: <FiHelpCircle />, label: 'Help & Support', color: '#9c27b0' },
+];
 
-  const handleSave = async () => {
-    try { await userAPI.updateProfile(form); updateUser?.(form); } catch (_) {}
-    setEditing(false);
-    Toast.show({ type: 'success', text1: 'Profile updated' });
+export default function ProfileScreen() {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+  const [showChangePw, setShowChangePw] = useState(false);
+  const [pwForm, setPwForm] = useState({ current: '', next: '', confirm: '' });
+  const [showCur, setShowCur] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showCon, setShowCon] = useState(false);
+  const [pwSuccess, setPwSuccess] = useState(false);
+
+  const handleChangePw = (e) => {
+    e.preventDefault();
+    if (!pwForm.current || !pwForm.next || !pwForm.confirm) return;
+    if (pwForm.next !== pwForm.confirm) { alert('Passwords do not match'); return; }
+    setPwSuccess(true);
+    setPwForm({ current: '', next: '', confirm: '' });
+    setTimeout(() => { setPwSuccess(false); setShowChangePw(false); }, 2000);
   };
-
-  const handleLogout = () => {
-    Alert.alert('Logout', 'Are you sure you want to logout?', [
-      { text: 'Cancel', style: 'cancel' },
-      { text: 'Logout', style: 'destructive', onPress: logout },
-    ]);
-  };
-
-  const handleDeleteAccount = () => {
-    Alert.alert(
-      'Delete Account',
-      'Are you sure you want to permanently delete your account? This action cannot be undone. All your data, booking history, and loyalty points will be lost.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete Account',
-          style: 'destructive',
-          onPress: () => {
-            Alert.alert(
-              'Final Confirmation',
-              'Type DELETE to confirm account deletion.',
-              [
-                { text: 'Cancel', style: 'cancel' },
-                {
-                  text: 'Confirm Delete',
-                  style: 'destructive',
-                  onPress: async () => {
-                    try {
-                      await userAPI.deleteAccount();
-                      Toast.show({ type: 'success', text1: 'Account deleted' });
-                      logout();
-                    } catch (_) {
-                      Toast.show({ type: 'error', text1: 'Failed to delete account' });
-                    }
-                  },
-                },
-              ]
-            );
-          },
-        },
-      ]
-    );
-  };
-
-  const loyaltyPoints = user?.loyalty_points || 1250;
-  const loyaltyTier = loyaltyPoints >= 5000 ? 'Gold' : loyaltyPoints >= 2000 ? 'Silver' : 'Bronze';
-
-  const menuItems = [
-    { icon: 'clock', label: 'Travel History', onPress: () => navigation.navigate('MyTripsTab') },
-    { icon: 'bell', label: 'Notifications', onPress: () => navigation.navigate('Notifications') },
-    { icon: 'help-circle', label: 'Help & Support', onPress: () => {} },
-    { icon: 'file-text', label: 'Terms & Conditions', onPress: () => navigation.navigate('Terms') },
-    { icon: 'shield', label: 'Privacy Policy', onPress: () => navigation.navigate('Privacy') },
-    { icon: 'info', label: 'About GV Florida', onPress: () => {} },
-  ];
 
   return (
-    <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Profile Header */}
-        <View style={styles.profileHeader}>
-          <View style={styles.avatar}>
-            <Text style={styles.avatarText}>{(form.first_name[0] || 'J') + (form.last_name[0] || 'D')}</Text>
-          </View>
-          <Text style={styles.name}>{form.first_name} {form.last_name}</Text>
-          <Text style={styles.email}>{form.email}</Text>
-        </View>
+    <div className="screen">
+      <div className="screen-header"><h2>Profile</h2></div>
+      <div className="screen-body" style={{ paddingBottom: 70 }}>
+        <div style={{ textAlign: 'center', marginBottom: 20 }}>
+          <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 30, fontWeight: 700, margin: '0 auto 10px' }}>
+            {user?.first_name?.[0]}{user?.last_name?.[0]}
+          </div>
+          <div style={{ fontSize: 18, fontWeight: 700 }}>{user?.first_name} {user?.last_name}</div>
+          <div style={{ fontSize: 13, color: '#999' }}>{user?.email}</div>
+          <div style={{ fontSize: 13, color: '#999' }}>{user?.phone}</div>
+        </div>
 
-        {/* Loyalty Card */}
-        <View style={styles.loyaltyCard}>
-          <View style={styles.loyaltyHeader}>
-            <View>
-              <Text style={styles.loyaltyTitle}>Loyalty Program</Text>
-              <Text style={styles.loyaltyTier}>{loyaltyTier} Member</Text>
-            </View>
-            <View style={styles.pointsBadge}>
-              <Icon name="award" size={18} color="#f1c40f" />
-              <Text style={styles.pointsText}>{loyaltyPoints.toLocaleString()} pts</Text>
-            </View>
-          </View>
-          <View style={styles.loyaltyProgress}>
-            <View style={styles.progressBar}><View style={[styles.progressFill, { width: `${Math.min((loyaltyPoints / 5000) * 100, 100)}%` }]} /></View>
-            <Text style={styles.progressLabel}>{loyaltyPoints >= 5000 ? 'Gold tier reached!' : `${(5000 - loyaltyPoints).toLocaleString()} pts to Gold`}</Text>
-          </View>
-        </View>
-
-        {/* Edit Profile */}
-        <View style={styles.card}>
-          <View style={styles.cardHeaderRow}>
-            <Text style={styles.sectionTitle}>Personal Information</Text>
-            <TouchableOpacity onPress={() => editing ? handleSave() : setEditing(true)}>
-              <Text style={styles.editBtn}>{editing ? 'Save' : 'Edit'}</Text>
-            </TouchableOpacity>
-          </View>
-          {editing ? (
-            <View style={styles.form}>
-              <TextInput style={styles.input} value={form.first_name} onChangeText={v => setForm(f => ({ ...f, first_name: v }))} placeholder="First Name" />
-              <TextInput style={styles.input} value={form.last_name} onChangeText={v => setForm(f => ({ ...f, last_name: v }))} placeholder="Last Name" />
-              <TextInput style={styles.input} value={form.phone} onChangeText={v => setForm(f => ({ ...f, phone: v }))} placeholder="Phone" keyboardType="phone-pad" />
-            </View>
-          ) : (
-            <View style={styles.infoList}>
-              <View style={styles.infoRow}><Icon name="user" size={16} color="#888" /><Text style={styles.infoText}>{form.first_name} {form.last_name}</Text></View>
-              <View style={styles.infoRow}><Icon name="mail" size={16} color="#888" /><Text style={styles.infoText}>{form.email}</Text></View>
-              <View style={styles.infoRow}><Icon name="phone" size={16} color="#888" /><Text style={styles.infoText}>{form.phone}</Text></View>
-            </View>
-          )}
-        </View>
-
-        {/* Notification Preferences */}
-        <View style={styles.card}>
-          <Text style={styles.sectionTitle}>Notification Preferences</Text>
-          {[
-            { key: 'push', label: 'Push Notifications' },
-            { key: 'email', label: 'Email Notifications' },
-            { key: 'tripUpdates', label: 'Trip Updates' },
-            { key: 'promo', label: 'Promotions & Offers' },
-          ].map(item => (
-            <View key={item.key} style={styles.switchRow}>
-              <Text style={styles.switchLabel}>{item.label}</Text>
-              <Switch value={notifs[item.key]} onValueChange={v => setNotifs(n => ({ ...n, [item.key]: v }))} trackColor={{ true: '#1a5276' }} thumbColor={notifs[item.key] ? '#e8f0f5' : '#ccc'} />
-            </View>
-          ))}
-        </View>
-
-        {/* Menu */}
-        <View style={styles.card}>
+        <div className="card" style={{ padding: 0, overflow: 'hidden', marginBottom: 16 }}>
           {menuItems.map((item, i) => (
-            <TouchableOpacity key={i} style={[styles.menuItem, i < menuItems.length - 1 && styles.menuBorder]} onPress={item.onPress}>
-              <Icon name={item.icon} size={20} color="#D90045" />
-              <Text style={styles.menuLabel}>{item.label}</Text>
-              <Icon name="chevron-right" size={18} color="#ccc" />
-            </TouchableOpacity>
+            <div key={i} onClick={() => item.path && navigate(item.path)}
+              style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderBottom: i < menuItems.length - 1 ? '1px solid #f0f0f0' : 'none', cursor: 'pointer' }}>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: `${item.color}15`, color: item.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, marginRight: 12 }}>
+                {item.icon}
+              </div>
+              <span style={{ flex: 1, fontSize: 14, fontWeight: 500 }}>{item.label}</span>
+              <FiChevronRight style={{ color: '#ccc' }} />
+            </div>
           ))}
-        </View>
+        </div>
 
-        {/* Logout */}
-        <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
-          <Icon name="log-out" size={20} color="#e74c3c" />
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
+        {/* Change Password */}
+        <div className="card" style={{ marginBottom: 16 }}>
+          <div onClick={() => setShowChangePw(p => !p)}
+            style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: '#e8f0fe', color: '#1a5276', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, marginRight: 12 }}>
+              <FiLock />
+            </div>
+            <span style={{ flex: 1, fontSize: 14, fontWeight: 600 }}>Change Password</span>
+            <FiChevronRight style={{ color: '#ccc', transform: showChangePw ? 'rotate(90deg)' : 'none', transition: 'transform .2s' }} />
+          </div>
+          {showChangePw && (
+            <form onSubmit={handleChangePw} style={{ marginTop: 16 }}>
+              {pwSuccess && <div style={{ background: '#e8f5e9', color: '#2e7d32', padding: '8px 12px', borderRadius: 8, fontSize: 13, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}><FiCheck /> Password updated successfully!</div>}
+              {[
+                { label: 'Current Password', key: 'current', show: showCur, toggle: () => setShowCur(p => !p) },
+                { label: 'New Password', key: 'next', show: showNew, toggle: () => setShowNew(p => !p) },
+                { label: 'Confirm New Password', key: 'confirm', show: showCon, toggle: () => setShowCon(p => !p) },
+              ].map(f => (
+                <div key={f.key} className="input-group">
+                  <label style={{ fontSize: 12, fontWeight: 600, color: '#555', display: 'block', marginBottom: 6 }}>{f.label}</label>
+                  <div style={{ position: 'relative' }}>
+                    <input className="input-field" type={f.show ? 'text' : 'password'} placeholder={f.label} value={pwForm[f.key]} onChange={e => setPwForm(p => ({ ...p, [f.key]: e.target.value }))} style={{ paddingRight: 44, fontSize: 14 }} />
+                    <button type="button" onClick={f.toggle} style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#999', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 4 }}>
+                      {f.show ? <FiEyeOff size={17} /> : <FiEye size={17} />}
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <button className="btn btn-dark" type="submit" style={{ marginTop: 4 }}>Update Password</button>
+            </form>
+          )}
+        </div>
 
-        {/* Delete Account */}
-        <TouchableOpacity style={styles.deleteBtn} onPress={handleDeleteAccount}>
-          <Icon name="trash-2" size={18} color="#999" />
-          <Text style={styles.deleteText}>Delete Account</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.version}>GV Florida App v1.0.0</Text>
-      </ScrollView>
-      <Toast />
-    </View>
+        <button className="btn" onClick={logout}
+          style={{ width: '100%', background: '#fce4ec', color: 'var(--primary)', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, border: 'none', padding: 14, borderRadius: 12, fontSize: 15, cursor: 'pointer' }}>
+          <FiLogOut /> Log Out
+        </button>
+      </div>
+      <BottomTabs />
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f5f6fa' },
-  scroll: { padding: 20 },
-  profileHeader: { alignItems: 'center', marginBottom: 20 },
-  avatar: { width: 80, height: 80, borderRadius: 40, backgroundColor: '#D90045', justifyContent: 'center', alignItems: 'center', marginBottom: 10 },
-  avatarText: { fontSize: 28, fontWeight: 'bold', color: '#fff' },
-  name: { fontSize: 22, fontWeight: 'bold', color: '#333' },
-  email: { fontSize: 14, color: '#888', marginTop: 2 },
-  loyaltyCard: { backgroundColor: '#1a3c5e', borderRadius: 16, padding: 18, marginBottom: 16, elevation: 3 },
-  loyaltyHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 },
-  loyaltyTitle: { fontSize: 12, color: 'rgba(255,255,255,0.6)' },
-  loyaltyTier: { fontSize: 18, fontWeight: 'bold', color: '#f1c40f', marginTop: 2 },
-  pointsBadge: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.15)', paddingHorizontal: 14, paddingVertical: 8, borderRadius: 20 },
-  pointsText: { fontSize: 14, fontWeight: '700', color: '#fff' },
-  loyaltyProgress: {},
-  progressBar: { height: 6, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 3, overflow: 'hidden' },
-  progressFill: { height: '100%', backgroundColor: '#f1c40f', borderRadius: 3 },
-  progressLabel: { fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 6 },
-  card: { backgroundColor: '#fff', borderRadius: 16, padding: 18, marginBottom: 12, elevation: 1 },
-  cardHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
-  sectionTitle: { fontSize: 16, fontWeight: '700', color: '#333' },
-  editBtn: { fontSize: 14, fontWeight: '600', color: '#D90045' },
-  form: { gap: 10 },
-  input: { backgroundColor: '#f5f6fa', borderRadius: 10, padding: 12, fontSize: 15 },
-  infoList: { gap: 12 },
-  infoRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  infoText: { fontSize: 15, color: '#333' },
-  switchRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#f0f0f0', trackColor: '#D90045' },
-  switchLabel: { fontSize: 14, color: '#555' },
-  menuItem: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 14 },
-  menuBorder: { borderBottomWidth: 1, borderBottomColor: '#f0f0f0' },
-  menuLabel: { flex: 1, fontSize: 15, color: '#333' },
-  logoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingVertical: 14, marginTop: 8, marginBottom: 8 },
-  logoutText: { fontSize: 16, fontWeight: '600', color: '#e74c3c' },
-  deleteBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 12, marginTop: 4, marginBottom: 8 },
-  deleteText: { fontSize: 14, color: '#999' },
-  version: { textAlign: 'center', fontSize: 12, color: '#ccc', marginBottom: 20 },
-});

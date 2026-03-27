@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { authAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -9,40 +7,38 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadStoredUser();
+    const saved = localStorage.getItem('gvf_user');
+    if (saved) {
+      try { setUser(JSON.parse(saved)); } catch {}
+    }
+    setLoading(false);
   }, []);
 
-  const loadStoredUser = async () => {
-    try {
-      const savedUser = await AsyncStorage.getItem('gvf_user');
-      if (savedUser) setUser(JSON.parse(savedUser));
-    } catch (err) { console.error(err); }
-    finally { setLoading(false); }
-  };
-
   const login = async (phone, password) => {
-    const { data } = await authAPI.login({ phone, password });
-    await AsyncStorage.setItem('gvf_token', data.token);
-    await AsyncStorage.setItem('gvf_user', JSON.stringify(data.user));
-    setUser(data.user);
-    return data.user;
+    // Demo login - accepts any credentials
+    const demoUser = { id: 1, first_name: 'Juan', last_name: 'Dela Cruz', phone: phone || '09171234567', email: 'juan@email.com', wallet_balance: 1500 };
+    localStorage.setItem('gvf_user', JSON.stringify(demoUser));
+    localStorage.setItem('gvf_token', 'demo-token-123');
+    setUser(demoUser);
+    return demoUser;
   };
 
   const register = async (userData) => {
-    const { data } = await authAPI.register(userData);
-    await AsyncStorage.setItem('gvf_token', data.token);
-    await AsyncStorage.setItem('gvf_user', JSON.stringify(data.user));
-    setUser(data.user);
-    return data.user;
+    const newUser = { id: 2, first_name: userData.name?.split(' ')[0] || 'User', last_name: userData.name?.split(' ').slice(1).join(' ') || '', phone: userData.phone, email: userData.email, wallet_balance: 0 };
+    localStorage.setItem('gvf_user', JSON.stringify(newUser));
+    localStorage.setItem('gvf_token', 'demo-token-456');
+    setUser(newUser);
+    return newUser;
   };
 
-  const logout = async () => {
-    await AsyncStorage.multiRemove(['gvf_token', 'gvf_user']);
+  const logout = () => {
+    localStorage.removeItem('gvf_user');
+    localStorage.removeItem('gvf_token');
     setUser(null);
   };
 
-  const updateUser = async (userData) => {
-    await AsyncStorage.setItem('gvf_user', JSON.stringify(userData));
+  const updateUser = (userData) => {
+    localStorage.setItem('gvf_user', JSON.stringify(userData));
     setUser(userData);
   };
 

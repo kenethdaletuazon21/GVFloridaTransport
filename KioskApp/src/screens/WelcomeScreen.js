@@ -45,10 +45,10 @@ export default function WelcomeScreen() {
   return (
     <div className="welcome-screen">
       <img
-        src="/logo.png"
+        src="/logoround.png"
         alt="GV Florida"
         className="welcome-logo"
-        onError={(e) => { e.target.style.display = 'none'; }}
+        style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', marginBottom: 12 }}
       />
       <h1 className="welcome-title">GV Florida Transport</h1>
       <p className="welcome-subtitle">Self-Service Kiosk Terminal</p>
