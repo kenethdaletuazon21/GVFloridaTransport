@@ -67,64 +67,87 @@
                 </div>
                 <div class="kiosk-hero-mockup">
                     <div class="kiosk-enclosure">
-                        <!-- Top branding strip -->
+                        <!-- Beacon light strip at top -->
+                        <div class="kiosk-beacon"></div>
+                        <!-- Branding header -->
                         <div class="kiosk-enc-header">
                             <img src="assets/logoround.png" alt="Logo" class="kiosk-enc-logo">
                             <span>GV Florida Transport</span>
                         </div>
-                        <!-- Tablet mounted inside kiosk -->
-                        <div class="kiosk-tablet-mount">
-                            <div class="kiosk-tablet-bezel">
-                                <div class="kiosk-tablet-camera"></div>
-                                <div class="kiosk-screen">
-                                    <div class="kiosk-status-bar">
-                                        <span>GV Florida Transport</span>
-                                        <span><i class="fas fa-wifi"></i> <i class="fas fa-signal"></i></span>
+                        <!-- Screen bezel: camera + screen + speaker -->
+                        <div class="kiosk-tablet-bezel">
+                            <div class="kiosk-cam-bar">
+                                <div class="kiosk-cam-dot"></div>
+                                <div class="kiosk-cam-ir"></div>
+                            </div>
+                            <div class="kiosk-screen">
+                                <div class="kiosk-status-bar">
+                                    <span>GV Florida Transport</span>
+                                    <span>10:32 AM &nbsp;<i class="fas fa-wifi"></i></span>
+                                </div>
+                                <div class="kiosk-welcome">
+                                    <img src="assets/logoround.png" alt="Logo" class="kiosk-logo">
+                                    <h3>Welcome!</h3>
+                                    <p>Touch to begin your journey</p>
+                                </div>
+                                <div class="kiosk-home-grid">
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span>Buy Ticket</span>
                                     </div>
-                                    <div class="kiosk-welcome">
-                                        <img src="assets/logoround.png" alt="Logo" class="kiosk-logo">
-                                        <h3>Welcome!</h3>
-                                        <p>Touch to begin your journey</p>
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-wallet"></i>
+                                        <span>Top Up Wallet</span>
                                     </div>
-                                    <div class="kiosk-home-grid">
-                                        <div class="kiosk-home-btn">
-                                            <i class="fas fa-ticket-alt"></i>
-                                            <span>Buy Ticket</span>
-                                        </div>
-                                        <div class="kiosk-home-btn">
-                                            <i class="fas fa-wallet"></i>
-                                            <span>Top Up Wallet</span>
-                                        </div>
-                                        <div class="kiosk-home-btn">
-                                            <i class="fas fa-user-circle"></i>
-                                            <span>My Account</span>
-                                        </div>
-                                        <div class="kiosk-home-btn">
-                                            <i class="fas fa-map-signs"></i>
-                                            <span>Station Info</span>
-                                        </div>
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span>My Account</span>
                                     </div>
-                                    <div class="kiosk-lang-bar">
-                                        <span class="lang-active">English</span>
-                                        <span>Filipino</span>
-                                        <span>Ilocano</span>
+                                    <div class="kiosk-home-btn">
+                                        <i class="fas fa-map-signs"></i>
+                                        <span>Station Info</span>
                                     </div>
                                 </div>
-                                <div class="kiosk-tablet-home-btn"></div>
+                                <div class="kiosk-lang-bar">
+                                    <span class="lang-active">English</span>
+                                    <span>Filipino</span>
+                                    <span>Ilocano</span>
+                                </div>
+                            </div>
+                            <div class="kiosk-speaker-bar">
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
                             </div>
                         </div>
-                        <!-- Card reader & receipt area -->
-                        <div class="kiosk-enc-footer">
-                            <div class="kiosk-card-reader">
-                                <div class="kiosk-card-slot"></div>
-                                <span>Card / QR Reader</span>
+                        <!-- Hardware panel: NFC / QR scanner / card reader -->
+                        <div class="kiosk-hw-panel">
+                            <div class="kiosk-nfc-zone">
+                                <div class="kiosk-nfc-ring"><i class="fas fa-wifi"></i></div>
+                                <small>NFC / Tap</small>
                             </div>
-                            <div class="kiosk-receipt-slot">
+                            <div class="kiosk-hw-divider"></div>
+                            <div class="kiosk-qr-zone">
+                                <div class="kiosk-qr-window">
+                                    <div class="kiosk-scan-line"></div>
+                                </div>
+                                <small>QR Scan</small>
+                            </div>
+                            <div class="kiosk-hw-divider"></div>
+                            <div class="kiosk-card-zone">
+                                <div class="kiosk-card-slot-row">
+                                    <div class="kiosk-card-slot"></div>
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <small>Card Reader</small>
+                            </div>
+                        </div>
+                        <!-- Thermal printer -->
+                        <div class="kiosk-printer-section">
+                            <div class="kiosk-printer-slot">
                                 <div class="kiosk-receipt-strip"></div>
-                                <span>Receipt</span>
                             </div>
+                            <small>Ticket Printer</small>
                         </div>
-                        <!-- Base stand -->
+                        <!-- Base pedestal -->
                         <div class="kiosk-enc-base"></div>
                     </div>
                 </div>

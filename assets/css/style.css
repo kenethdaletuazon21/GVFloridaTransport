@@ -1,22 +1,3 @@
-/* Step 7 mobile description (only show on mobile) */
-.step7-mobile-desc {
-    display: none;
-    background: #f8f8f8;
-    border-radius: 10px;
-    margin: 18px 0 0 0;
-    padding: 14px 16px;
-    font-size: 1.08rem;
-    color: #222;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .step7-mobile-desc {
-        display: block;
-    }
-}
 /* =============================================
    GV Florida Transport, Inc. - Main Stylesheet
    ============================================= */
@@ -2087,39 +2068,120 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 1.2rem;
 }
 
-/* Kiosk Frame Mockup */
+/* Kiosk Enclosure Mockup */
 .kiosk-hero-mockup {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
-.kiosk-frame {
-    position: relative;
+
+/* Outer standing kiosk cabinet */
+.kiosk-enclosure {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(160deg, #2d2d40 0%, #1a1a2e 60%, #141420 100%);
+    border-radius: 20px 20px 4px 4px;
+    padding: 0 18px 0;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.4),
+                inset 0 0 0 2px rgba(255,255,255,0.07),
+                0 0 0 1px rgba(0,0,0,0.5);
+    width: 480px;
 }
-.kiosk-stand {
-    width: 80px;
-    height: 60px;
-    background: linear-gradient(180deg, #555 0%, #333 100%);
-    clip-path: polygon(15% 0, 85% 0, 100% 100%, 0% 100%);
-    order: 2;
-    margin-top: -2px;
+
+/* Pulsing beacon light at top */
+.kiosk-beacon {
+    width: calc(100% + 36px);
+    height: 5px;
+    background: linear-gradient(90deg, transparent 5%, var(--primary) 35%, var(--primary) 65%, transparent 95%);
+    border-radius: 20px 20px 0 0;
+    animation: beacon-pulse 3s ease-in-out infinite;
+    margin-bottom: 12px;
 }
-.kiosk-body {
-    width: 520px;
-    background: #1a1a2e;
-    border-radius: 20px;
-    padding: 14px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.3), inset 0 0 0 2px rgba(255,255,255,0.08);
-    order: 1;
+@keyframes beacon-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
+
+/* Branding header */
+.kiosk-enc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 0 10px;
+    width: 100%;
+}
+.kiosk-enc-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+.kiosk-enc-header span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+/* Screen bezel (camera + screen + speaker) */
+.kiosk-tablet-bezel {
+    background: #08081a;
+    border-radius: 12px;
+    width: 100%;
+    overflow: hidden;
+    outline: 1.5px solid rgba(255,255,255,0.08);
+}
+
+/* Camera bar */
+.kiosk-cam-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 18px;
+    background: #08081a;
+}
+.kiosk-cam-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1c1c30;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
+}
+.kiosk-cam-ir {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(217,0,69,0.35);
+}
+
+/* Screen */
 .kiosk-screen {
     background: var(--white);
-    border-radius: 12px;
     overflow: hidden;
-    min-height: 260px;
+    width: 100%;
 }
+
+/* Speaker grille below screen */
+.kiosk-speaker-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 0;
+    background: #08081a;
+}
+.kiosk-speaker-bar span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 1px;
+}
+
+/* Screen content */
 .kiosk-status-bar {
     display: flex;
     justify-content: space-between;
@@ -2191,16 +2253,165 @@ img { max-width: 100%; height: auto; display: block; }
     border-bottom: 2px solid var(--primary);
     padding-bottom: 2px;
 }
-.kiosk-printer-slot {
-    margin-top: 8px;
+
+/* Hardware panel: NFC + QR + Card */
+.kiosk-hw-panel {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 12px 20px;
+    background: #111128;
+    gap: 6px;
+    margin-top: 2px;
+}
+.kiosk-nfc-zone,
+.kiosk-qr-zone,
+.kiosk-card-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.kiosk-nfc-zone small,
+.kiosk-qr-zone small,
+.kiosk-card-zone small {
+    font-size: 0.46rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.kiosk-hw-divider {
+    width: 1px;
+    height: 38px;
+    background: rgba(255,255,255,0.07);
+}
+.kiosk-nfc-ring {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(217,0,69,0.08);
+    border: 1.5px solid rgba(217,0,69,0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(217,0,69,0.65);
+    font-size: 0.85rem;
+    transform: rotate(90deg);
+}
+.kiosk-qr-window {
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.14);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+.kiosk-qr-window::before,
+.kiosk-qr-window::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-color: rgba(217,0,69,0.65);
+    border-style: solid;
+}
+.kiosk-qr-window::before {
+    top: 3px; left: 3px;
+    border-width: 2px 0 0 2px;
+}
+.kiosk-qr-window::after {
+    bottom: 3px; right: 3px;
+    border-width: 0 2px 2px 0;
+}
+.kiosk-scan-line {
+    position: absolute;
+    left: 4px; right: 4px;
+    height: 1.5px;
+    background: rgba(217,0,69,0.65);
+    animation: scan-move 2s ease-in-out infinite;
+}
+@keyframes scan-move {
+    0%, 100% { top: 25%; }
+    50% { top: 72%; }
+}
+.kiosk-card-slot-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 6px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.kiosk-card-slot {
+    width: 26px;
+    height: 5px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+.kiosk-card-zone i {
+    color: rgba(255,255,255,0.28);
+    font-size: 0.7rem;
+}
+
+/* Thermal printer section */
+.kiosk-printer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0 10px;
+    width: 100%;
+    background: #0d0d20;
+    border-top: 1px solid rgba(255,255,255,0.04);
+}
+.kiosk-printer-section small {
+    font-size: 0.44rem;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+}
+.kiosk-printer-slot {
+    width: 80px;
+    height: 5px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
-.kiosk-receipt {
-    width: 100px;
-    height: 8px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 0 0 4px 4px;
+.kiosk-receipt-strip {
+    width: 36px;
+    height: 3px;
+    background: rgba(255,255,255,0.55);
+    border-radius: 1px;
+}
+
+/* Base pedestal */
+.kiosk-enc-base {
+    width: 140px;
+    height: 14px;
+    background: linear-gradient(180deg, #222236 0%, #141420 100%);
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.kiosk-enc-base::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 5px;
+    background: #0d0d1a;
+    border-radius: 0 0 8px 8px;
 }
 
 /* =============================================
@@ -3873,7 +4084,7 @@ img { max-width: 100%; height: auto; display: block; }
     .kiosk-tabs-grid { grid-template-columns: 1fr; }
     .kiosk-hardware-grid { grid-template-columns: 1fr; }
     .kiosk-cta-content h2 { font-size: 1.6rem; }
-    .kiosk-body { width: 100%; max-width: 340px; }
+    .kiosk-enclosure { width: 100%; max-width: 420px; margin: 0 auto; }
     .kiosk-step-screen { max-width: 100%; width: 100%; }
     .kiosk-admin-note { flex-direction: column; text-align: center; align-items: center; }
     .ks-amount-grid { grid-template-columns: repeat(2, 1fr); }
