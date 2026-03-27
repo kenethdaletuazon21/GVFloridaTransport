@@ -15,7 +15,6 @@ export default function KioskHeader() {
         <img
           src="/logoround.png"
           alt="GV Florida"
-          style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover' }}
         />
         <div>
           <h1>GV Florida Transport</h1>
