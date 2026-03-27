@@ -82,7 +82,6 @@ export default function WelcomeScreen() {
           {' • '}
           {time.toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' })}
         </div>
-        GV Florida Transport Inc. — 832 AH Lacson Ave. Cor. Earnshaw St. Sampaloc, Manila
       </div>
     </div>
   );

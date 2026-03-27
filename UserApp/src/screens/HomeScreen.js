@@ -18,7 +18,7 @@ export default function HomeScreen() {
 
   return (
     <div className="screen">
-      <div style={{ background: 'var(--primary)', color: '#fff', padding: '20px 20px 50px' }}>
+      <div style={{ background: 'var(--primary)', color: '#fff', padding: '20px 20px 50px', flexShrink: 0 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div>
             <div style={{ fontSize: 20, fontWeight: 700 }}>Hello, {user?.first_name || 'Traveler'}! 👋</div>
