@@ -24,7 +24,7 @@ export default function LoginScreen() {
   return (
     <div className="auth-screen">
       <div className="auth-header">
-        <img src="/logoround.png" alt="GV Florida" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', marginBottom: 8 }} />
+        <img src="/logoround.png" alt="GV Florida" className="auth-logo" />
         <h1>GV Florida</h1>
         <p>Transport Inc.</p>
       </div>

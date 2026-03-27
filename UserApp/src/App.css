@@ -147,12 +147,13 @@ body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; j
 .notif-time { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
 
 /* Login Screen */
-.auth-screen { flex: 1; display: flex; flex-direction: column; }
-.auth-header { flex: 1; background: var(--primary); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 40px 20px 30px; min-height: 200px; }
-.auth-header h1 { font-size: 28px; font-weight: 800; margin-top: 12px; }
+.auth-screen { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.auth-header { flex-shrink: 0; background: var(--primary); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 36px 20px 36px; min-height: 210px; }
+.auth-header h1 { font-size: 28px; font-weight: 800; margin-top: 10px; }
 .auth-header p { font-size: 14px; opacity: .7; margin-top: 4px; }
-.auth-form { background: #fff; border-radius: 24px 24px 0 0; margin-top: -20px; padding: 30px 24px; flex: 1; }
-.auth-form h2 { font-size: 22px; font-weight: 700; color: var(--gray-800); margin-bottom: 24px; text-align: center; }
+.auth-logo { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.25), 0 4px 16px rgba(0,0,0,0.25); margin-bottom: 4px; }
+.auth-form { background: #fff; border-radius: 24px 24px 0 0; margin-top: -20px; padding: 28px 24px 24px; flex: 1; overflow-y: auto; }
+.auth-form h2 { font-size: 22px; font-weight: 700; color: var(--gray-800); margin-bottom: 20px; text-align: center; }
 .auth-link { text-align: center; font-size: 14px; color: var(--gray-600); margin-top: 16px; }
 .auth-link a { color: var(--primary); font-weight: 600; text-decoration: none; }
 

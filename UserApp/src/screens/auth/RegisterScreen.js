@@ -24,8 +24,8 @@ export default function RegisterScreen() {
 
   return (
     <div className="auth-screen">
-      <div className="auth-header" style={{ minHeight: 160 }}>
-        <img src="/logoround.png" alt="GV Florida" style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', marginBottom: 8 }} />
+      <div className="auth-header" style={{ minHeight: 180 }}>
+        <img src="/logoround.png" alt="GV Florida" className="auth-logo" style={{ width: 72, height: 72 }} />
         <h1 style={{ fontSize: 24 }}>Create Account</h1>
         <p>Join GV Florida Transport</p>
       </div>
