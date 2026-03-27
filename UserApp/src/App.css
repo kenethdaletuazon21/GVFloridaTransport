@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+html { height: 100%; }
+body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; min-height: 100dvh; height: 100%; }
 
 :root {
   --primary: #D90045;
@@ -25,6 +26,7 @@ body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; j
 .mobile-frame {
   width: 390px;
   height: 100vh;
+  height: 100dvh;
   max-height: 844px;
   background: #fff;
   position: relative;
@@ -36,7 +38,8 @@ body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; j
 }
 
 @media (max-width: 420px) {
-  .mobile-frame { width: 100vw; height: 100vh; max-height: none; border-radius: 0; }
+  body { align-items: flex-start; background: #fff; }
+  .mobile-frame { width: 100%; height: 100%; max-height: none; border-radius: 0; box-shadow: none; }
 }
 
 /* Loading */
@@ -52,7 +55,7 @@ body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; j
 .screen-body { flex: 1; overflow-y: auto; padding: 16px; }
 
 /* Bottom Tab Bar */
-.tab-bar { display: flex; background: #fff; border-top: 1px solid #eee; flex-shrink: 0; padding: 6px 0 8px; }
+.tab-bar { display: flex; background: #fff; border-top: 1px solid #eee; flex-shrink: 0; padding: 6px 0 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); }
 .tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; background: none; border: none; font-family: inherit; padding: 4px 0; }
 .tab-item .tab-icon { font-size: 22px; color: var(--gray-400); }
 .tab-item .tab-label { font-size: 10px; color: var(--gray-500); font-weight: 500; }
